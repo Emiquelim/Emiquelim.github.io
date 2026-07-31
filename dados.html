@@ -8,13 +8,13 @@
   :root{
     --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
     --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --neutral:#5c594f;
-    --accent:#2c5f8a; --chip:#eef2f6;
+    --accent:#2c5f8a; --chip:#eef2f6; --warn-bg:#fff4e0; --warn-ink:#8a5a00; --warn-line:#e8c887;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#191817; --surface:#232220; --ink:#eceae4; --ink-2:#b0ac9f; --ink-3:#807c6f;
       --line:#38362f; --up:#4cc98a; --down:#e5766c; --neutral:#b0ac9f;
-      --accent:#7fb0da; --chip:#2a3138;
+      --accent:#7fb0da; --chip:#2a3138; --warn-bg:#3a2f18; --warn-ink:#e8c887; --warn-line:#5c4a24;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -24,6 +24,7 @@
   .brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
   h1{font-size:26px;font-weight:700;margin-top:4px}
   .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
+  .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
   .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
@@ -39,6 +40,7 @@
   td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--ink-2);font-variant-numeric:tabular-nums}
   td:first-child{color:var(--ink);font-weight:600}
   tr:last-child td{border-bottom:none}
+  .pend{color:var(--warn-ink);font-weight:600}
   footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
   footer a{color:var(--accent);text-decoration:none}
 </style>
@@ -48,45 +50,60 @@
   <header>
     <div class="brand">Newsflow Agro</div>
     <h1>Painel de Dados</h1>
-    <div class="meta">Atualizado: quinta, 30/07/2026, 09:05 (São Paulo, BR) · BGI · SJC · CCM · ICF · próxima atualização automática: 12h (qui 30/07)</div>
+    <div class="meta">Atualizado: sexta, 31/07/2026, 10:20 (São Paulo, BR) · BGI · SJC · CCM · ICF · referência dos fechamentos: <strong>quinta 30/07</strong></div>
+    <div class="banner">⚠️ As rodadas automáticas ficaram paradas entre 30/07 12h15 e 31/07 10h20 (falha na publicação; o site chegou a servir versão de 29/07). Esta edição foi republicada manualmente com os dados de 30/07. Pendências marcadas em laranja.</div>
   </header>
 
   <div class="kpis">
     <div class="kpi">
       <div class="label">Boi — Indicador CEPEA</div>
-      <div class="value">R$ 347,40/@</div>
-      <div class="delta down">▼ −0,09% dia</div>
-      <div class="ref">CEPEA/Esalq · 29/07 · +3,27% no mês · US$ 68,09</div>
+      <div class="value">R$ 346,90/@</div>
+      <div class="delta down">▼ −0,14% dia</div>
+      <div class="ref">CEPEA/Esalq · <strong>30/07</strong> · +3,12% no mês · US$ 68,45</div>
     </div>
     <div class="kpi">
       <div class="label">Milho B3 Set/26</div>
-      <div class="value">R$ 70,34/sc</div>
-      <div class="delta down">▼ −0,10%</div>
-      <div class="ref">CCM · fechamento 29/07 (Divulgar Dinheiro)</div>
+      <div class="value">R$ 69,70/sc</div>
+      <div class="delta down">▼ −0,41%</div>
+      <div class="ref">CCM · parcial 30/07 17h17 (Notícias Agrícolas) · ajuste n/d</div>
     </div>
     <div class="kpi">
       <div class="label">Soja CBOT Nov</div>
-      <div class="value">US$ 11,93/bu</div>
-      <div class="delta down">▼ −27¼¢</div>
-      <div class="ref">Fechamento oficial 29/07 (TFM)</div>
+      <div class="value">US$ 11,88¾/bu</div>
+      <div class="delta down">▼ −4¢</div>
+      <div class="ref">Fechamento oficial 30/07 (TFM) · −64¢ na semana</div>
     </div>
     <div class="kpi">
       <div class="label">Dólar comercial</div>
-      <div class="value">R$ 5,1084</div>
-      <div class="delta down">▼ −0,27%</div>
-      <div class="ref">Fechamento 29/07 (ADVFN) · PTAX 29/07: R$ 5,1217</div>
+      <div class="value">R$ 5,06</div>
+      <div class="delta down">▼ ~−1%</div>
+      <div class="ref">Fechamento 30/07 (InfoMoney)</div>
     </div>
     <div class="kpi">
       <div class="label">Café NY Set/26</div>
-      <div class="value">325,80 ¢/lb</div>
-      <div class="delta down">▼ −4,01%</div>
-      <div class="ref">ICE US · fech. 29/07</div>
+      <div class="value">323,05 ¢/lb</div>
+      <div class="delta down">▼ −0,84%</div>
+      <div class="ref">ICE US · fechamento 30/07</div>
     </div>
   </div>
 
   <section>
+    <h2>📊 Indicadores CEPEA/Esalq</h2>
+    <div class="sub">Regra D-1: em dia útil o painel deve trazer o indicador da véspera. Hoje (31/07) <strong>o boi já está com 30/07 ✓</strong>; milho, soja e café seguem com 29/07 porque as páginas do CEPEA entregam cópia defasada ao acesso automatizado — <strong>não é ausência de dado, é cache</strong>; a próxima rodada refaz a consulta. Indicadores do dia saem entre ~17h e 19h30.</div>
+    <table>
+      <thead><tr><th>Indicador</th><th>Valor</th><th>Var. dia</th><th>Var. mês</th><th>Data</th></tr></thead>
+      <tbody>
+        <tr><td>Boi gordo (SP)</td><td>R$ 346,90/@</td><td class="down">▼ −0,14%</td><td class="up">+3,12%</td><td><strong>30/07</strong> ✓</td></tr>
+        <tr><td>Milho (Campinas)</td><td>R$ 65,33/sc</td><td class="up">▲ +0,17%</td><td class="up">+2,75%</td><td class="pend">29/07 · 30/07 pendente</td></tr>
+        <tr><td>Soja (Paranaguá)</td><td>R$ 146,81/sc</td><td class="down">▼ −0,73%</td><td class="up">+9,90%</td><td class="pend">29/07 · 30/07 pendente</td></tr>
+        <tr><td>Café arábica (tipo 6)</td><td>R$ 1.761,96/sc</td><td class="down">▼ −1,13%</td><td class="up">+11,61%</td><td class="pend">29/07 · 30/07 pendente</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
     <h2>🐂 Boi gordo — indicador e físico por praça</h2>
-    <div class="sub">Indicador CEPEA/Esalq (SP): <strong>R$ 347,40/@ em 29/07 (▼ −0,09% dia · +3,27% no mês · US$ 68,09)</strong> — tabela oficial do CEPEA (confirmada por print do usuário às 8h46 de 30/07; leve realização após o +1,00% de 28/07, R$ 347,70). Tabela de praças: Agrifatto via Portal DBO, <strong>referência 29/07</strong> (boi comum, R$/@) · preços estáveis ante 28/07 em todas as praças · escala de 4 dias no PA segue sinalizando oferta apertada</div>
+    <div class="sub">Indicador CEPEA/Esalq (SP): <strong>R$ 346,90/@ em 30/07 (▼ −0,14% dia · +3,12% no mês · US$ 68,45)</strong> — terceiro pregão seguido de leve acomodação após o pico de R$ 347,70 em 28/07. Tabela de praças: Agrifatto via Portal DBO, <strong>referência 29/07</strong> (boi comum, R$/@) — atualização de 30/07 pendente</div>
     <table>
       <thead><tr><th>Praça</th><th>Boi (R$/@)</th><th>Escala de abate</th></tr></thead>
       <tbody>
@@ -105,63 +122,48 @@
   </section>
 
   <section>
-    <h2>📊 Indicadores CEPEA/Esalq</h2>
-    <div class="sub"><strong>Os 4 indicadores com dado de 29/07 (D-1) ✓</strong> · milho e soja confirmados por fetch da tabela oficial (8h45); boi e café confirmados na tabela oficial via prints do usuário (8h30–8h46) — o CDN do CEPEA entrega cópia defasada ao acesso automatizado, mas a página na origem está atualizada · indicadores do dia saem entre ~17h e 19h30</div>
-    <table>
-      <thead><tr><th>Indicador</th><th>Valor</th><th>Var. dia</th><th>Var. mês</th><th>Data</th></tr></thead>
-      <tbody>
-        <tr><td>Boi gordo (SP)</td><td>R$ 347,40/@</td><td class="down">▼ −0,09%</td><td class="up">+3,27%</td><td>29/07</td></tr>
-        <tr><td>Milho (Campinas)</td><td>R$ 65,33/sc</td><td class="up">▲ +0,17%</td><td class="up">+2,75%</td><td>29/07</td></tr>
-        <tr><td>Soja (Paranaguá)</td><td>R$ 146,81/sc</td><td class="down">▼ −0,73%</td><td class="up">+9,90%</td><td>29/07</td></tr>
-        <tr><td>Café arábica (tipo 6)</td><td>R$ 1.761,96/sc</td><td class="down">▼ −1,13%</td><td class="up">+11,61%</td><td>29/07</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
     <h2>🌽 Milho — futuros B3 (CCM)</h2>
-    <div class="sub"><strong>Fechamento 29/07/2026</strong> · R$/saca 60 kg · via Divulgar Dinheiro (artigo de 29/07) · leve realização após a alta de ~2% de 28/07 · variações conferem com os ajustes de 28/07 (Set: 70,41 → 70,34)</div>
+    <div class="sub"><strong>Parcial de 30/07/2026, 17h17</strong> (Notícias Agrícolas) · R$/saca 60 kg · ajustes oficiais de 30/07 ainda não publicados em fonte aberta · vencimentos curtos corrigindo para baixo, alongados sustentados</div>
     <table>
-      <thead><tr><th>Vencimento</th><th>Ajuste</th><th>Var. dia</th></tr></thead>
+      <thead><tr><th>Vencimento</th><th>Parcial 30/07</th><th>Var. dia</th><th>Ajuste 29/07</th></tr></thead>
       <tbody>
-        <tr><td>Set/26</td><td>70,34</td><td class="down">▼ −0,10%</td></tr>
-        <tr><td>Jan/27</td><td>77,70</td><td class="down">▼ −0,08%</td></tr>
-        <tr><td>Mar/27</td><td>79,40</td><td class="down">▼ −0,01%</td></tr>
-        <tr><td>Mai/27</td><td>77,77</td><td class="down">▼ −0,04%</td></tr>
+        <tr><td>Set/26</td><td>69,70</td><td class="down">▼ −0,41%</td><td>70,34</td></tr>
+        <tr><td>Jan/27</td><td>77,74</td><td class="down">▼ −0,21%</td><td>77,70</td></tr>
+        <tr><td>Mar/27</td><td>79,52</td><td class="down">▼ −0,19%</td><td>79,40</td></tr>
+        <tr><td>Mai/27</td><td>78,61</td><td class="up">▲ +0,14%</td><td>77,77</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
     <h2>🌱 Grãos e pecuária — Chicago (CBOT/CME)</h2>
-    <div class="sub"><strong>Fechamento oficial 29/07/2026</strong> (TFM Daily Market Summary; pecuária via Brownfield Ag News) · grãos em US$/bushel (farelo US$/t curta; óleo ¢/lb; boi US$/cwt) · driver do dia: previsões mais frias e úmidas no Meio-Oeste dos EUA → liquidação de posições compradas</div>
+    <div class="sub"><strong>Fechamento oficial 30/07/2026</strong> (TFM Daily Market Summary) · grãos em US$/bushel (farelo US$/t curta; óleo ¢/lb; boi US$/cwt) · driver: previsão seguiu mais úmida e fria no Meio-Oeste → vendedores ativos; soja acumulou perda de mais de 64¢ na semana; óleo amparado pelo petróleo (tensão com o Irã). <strong>Pecuária CME: dados de 30/07 pendentes</strong> (Brownfield do dia ainda fora do ar) — valores abaixo são de 29/07</div>
     <table>
       <thead><tr><th>Contrato</th><th>Ajuste</th><th>Var. dia</th></tr></thead>
       <tbody>
-        <tr><td>Soja Ago/26</td><td>11,78</td><td class="down">▼ −34¢ (−2,80%)</td></tr>
-        <tr><td>Soja Nov/26</td><td>11,92¾</td><td class="down">▼ −27¼¢</td></tr>
-        <tr><td>Milho Set/26</td><td>4,49</td><td class="down">▼ −9½¢</td></tr>
-        <tr><td>Milho Dez/26</td><td>4,71¾</td><td class="down">▼ −8¾¢</td></tr>
-        <tr><td>Farelo Ago/26</td><td>315,30</td><td class="down">▼ −5,00</td></tr>
-        <tr><td>Óleo Ago/26</td><td>69,17</td><td class="down">▼ −1,59</td></tr>
-        <tr><td>Live cattle Ago/26 (CME)</td><td>227,90</td><td class="up">▲ +0,42</td></tr>
-        <tr><td>Feeder cattle Ago/26 (CME)</td><td>344,27</td><td class="up">▲ +1,20</td></tr>
+        <tr><td>Soja Ago/26</td><td>11,77¼</td><td class="down">▼ −¾¢</td></tr>
+        <tr><td>Soja Nov/26</td><td>11,88¾</td><td class="down">▼ −4¢</td></tr>
+        <tr><td>Milho Set/26</td><td>4,45¾</td><td class="down">▼ −3¼¢</td></tr>
+        <tr><td>Milho Dez/26</td><td>4,68¼</td><td class="down">▼ −3¼¢</td></tr>
+        <tr><td>Farelo Ago/26</td><td>314,10</td><td class="down">▼ −1,20</td></tr>
+        <tr><td>Óleo Ago/26</td><td>68,35</td><td class="down">▼ −0,82</td></tr>
+        <tr><td>Live cattle Ago/26 (CME) · 29/07</td><td>227,90</td><td class="up">▲ +0,42</td></tr>
+        <tr><td>Feeder cattle Ago/26 (CME) · 29/07</td><td>344,27</td><td class="up">▲ +1,20</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
     <h2>☕ Café — futuros</h2>
-    <div class="sub">Fechamento <strong>29/07/2026</strong> · arábica ICE US em ¢/lb · robusta ICE Europe em US$/t · ICF B3 em US$/saca · via Cotação do Café · devolve parte da alta de 4,6% da véspera</div>
+    <div class="sub">Fechamento <strong>30/07/2026</strong> · arábica ICE US em ¢/lb · robusta ICE Europe em US$/t · ICF B3 em US$/saca · via Cotação do Café · arábica segue corrigindo após o pico de 28/07; robusta estabilizou</div>
     <table>
       <thead><tr><th>Contrato</th><th>Ajuste</th><th>Var. dia</th></tr></thead>
       <tbody>
-        <tr><td>Arábica NY Set/26</td><td>325,80</td><td class="down">▼ −4,01%</td></tr>
-        <tr><td>Arábica NY Dez/26</td><td>308,55</td><td class="down">▼ −2,76%</td></tr>
-        <tr><td>Arábica NY Mar/27</td><td>300,45</td><td class="down">▼ −2,89%</td></tr>
-        <tr><td>Robusta Londres Set/26</td><td>3.773,00</td><td class="down">▼ −2,68%</td></tr>
-        <tr><td>Robusta Londres Nov/26</td><td>3.749,00</td><td class="down">▼ −2,85%</td></tr>
-        <tr><td>ICF B3 Set/26 (arábica 4/5)</td><td>406,50</td><td class="down">▼ −0,25%</td></tr>
+        <tr><td>Arábica NY Set/26</td><td>323,05</td><td class="down">▼ −0,84%</td></tr>
+        <tr><td>Arábica NY Dez/26</td><td>307,70</td><td class="down">▼ −0,28%</td></tr>
+        <tr><td>Arábica NY Mar/27</td><td>299,60</td><td class="down">▼ −0,28%</td></tr>
+        <tr><td>Robusta Londres Set/26</td><td>3.780,00</td><td class="up">▲ +0,19%</td></tr>
+        <tr><td>ICF B3 Set/26 (arábica 4/5)</td><td>395,75</td><td class="down">▼ −0,21%</td></tr>
       </tbody>
     </table>
   </section>
@@ -171,17 +173,17 @@
     <table>
       <thead><tr><th>Item</th><th>Valor</th><th>Obs.</th></tr></thead>
       <tbody>
-        <tr><td>Dólar comercial</td><td>R$ 5,1084</td><td><strong>Fechamento de 29/07 (▼ −0,27%)</strong>, via ADVFN Brasil · PTAX 29/07: R$ 5,1217 (▲ +0,08% ante véspera, via TradeMap)</td></tr>
-        <tr><td>Ibovespa / Brent</td><td>−1,52% / US$ 87,62</td><td>Fechamento 29/07 via ADVFN · Brent ▲ +7,43% no dia com tensão EUA–Irã — atenção a custos de frete/insumos</td></tr>
+        <tr><td>Dólar comercial</td><td>R$ 5,06</td><td><strong>Fechamento de 30/07 (queda de quase 1%)</strong>, via InfoMoney · pressionado por Fed e dados de inflação nos EUA · PTAX de 30/07 pendente</td></tr>
+        <tr><td>Petróleo (Brent)</td><td>Em alta</td><td>Tensão ligada ao Irã seguiu sustentando o petróleo em 30/07 e deu suporte ao óleo de soja (TFM) · valor de fechamento de 30/07 pendente</td></tr>
         <tr><td>Fed (FOMC)</td><td>Juros mantidos</td><td>Decisão de 29/07 · faixa 3,50%–3,75% a.a.</td></tr>
-        <tr><td>Copom (Selic)</td><td>14,25% a.a.</td><td>Sem reunião em julho — próxima: 4–5/08, anúncio em 05/08 · Selic vigente: 14,25% a.a. (corte de 0,25 p.p. em jun/26)</td></tr>
+        <tr><td>Copom (Selic)</td><td>14,25% a.a.</td><td>Sem reunião em julho — <strong>próxima: 4–5/08, anúncio em 05/08</strong></td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
     <h2>🇺🇸 Lavoura EUA — Crop Progress (27/07)</h2>
-    <div class="sub">Relatório mais recente (segunda 27/07) · próximo: 03/08</div>
+    <div class="sub">Relatório mais recente (segunda 27/07) · <strong>próximo: segunda 03/08</strong> · clima mais úmido e frio no Meio-Oeste na virada de julho tende a melhorar as condições</div>
     <table>
       <thead><tr><th>Cultura</th><th>Boa/Excelente</th><th>Var. semanal</th><th>Obs.</th></tr></thead>
       <tbody>
@@ -192,8 +194,8 @@
   </section>
 
   <footer>
-    Fontes: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA boi</a> · <a href="https://cepea.org.br/br/indicador/milho.aspx">CEPEA milho</a> · <a href="https://cepea.org.br/br/indicador/soja.aspx">CEPEA soja</a> · <a href="https://cepea.org.br/br/indicador/cafe.aspx">CEPEA café</a> · <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-29-7-26/">Portal DBO/Agrifatto (29/07)</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café (NY/Londres/ICF)</a> · <a href="https://divulgardinheiro.com/futuros-do-milho-acompanham-perdas-da-soja-e-fecham-quarta-feira-caindo-2/">milho B3 — CCM fech. 29/07 (Divulgar Dinheiro)</a> · <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-07-29-2026/">Total Farm Marketing (CBOT fech. oficial 29/07)</a> · <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-july-29-2026/">Brownfield Ag News (live/feeder cattle 29/07)</a> · <a href="https://br.advfn.com">ADVFN Brasil (dólar/Ibov/Brent fech. 29/07)</a> · <a href="https://trademap.com.br/agencia/dolar-ptax-hoje-29-07-cotacao-fecha-em-alta">TradeMap (PTAX 29/07)</a> · <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-06/copom-reduz-taxa-selic-para-1425-ao-ano">Agência Brasil (Selic jun/26)</a>
-    <p style="margin-top:10px">Regra do painel: só números confirmados por fonte com data; "n/d" quando não confirmado. <strong>Edição das 9h05 (qui 30/07): REGRA D-1 cumprida — os 4 indicadores CEPEA estão com dado de 29/07.</strong> Boi (R$ 347,40, −0,09%) e café (R$ 1.761,96, −1,13%) confirmados na tabela oficial do CEPEA via prints do usuário (o CDN do CEPEA serve cópia defasada ao acesso automatizado; a origem está atualizada). Milho e soja confirmados por fetch direto. Pendência para as rodadas 12h+: parciais do pregão do dia 30. Material informativo — não constitui recomendação.</p>
+    Fontes: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA boi (30/07 ✓)</a> · <a href="https://cepea.org.br/br/indicador/milho.aspx">CEPEA milho</a> · <a href="https://cepea.org.br/br/indicador/soja.aspx">CEPEA soja</a> · <a href="https://cepea.org.br/br/indicador/cafe.aspx">CEPEA café</a> · <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-07-30-2026/">Total Farm Marketing (CBOT fech. 30/07)</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café (NY/Londres/ICF 30/07)</a> · <a href="https://www.noticiasagricolas.com.br/noticias/milho/425645-b-3-corrige-primeiras-cotacoes-do-milho-para-baixo-nesta-quinta-feira-mas-vencimentos-alongados-seguem-em-vies-positivo.html">Notícias Agrícolas (CCM parcial 30/07)</a> · <a href="https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-30072026/">InfoMoney (dólar fech. 30/07)</a> · <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-29-7-26/">Portal DBO/Agrifatto (praças 29/07)</a>
+    <p style="margin-top:10px">Regra do painel: só números confirmados por fonte com data; "n/d" ou marcação laranja quando não confirmado. Pendências para as próximas rodadas: indicadores CEPEA de milho, soja e café de 30/07; ajuste oficial do CCM B3 de 30/07; pecuária CME de 30/07; boi por praça de 30/07; PTAX de 30/07. Material informativo — não constitui recomendação de investimento.</p>
   </footer>
 </div>
 </body>

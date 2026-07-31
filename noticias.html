@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newsflow Agro — Painel de Notícias</title>
+<title>Newsflow Agro — Resumo Pré-Pregão</title>
 <style>
   :root{
     --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
     --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --neutral:#5c594f;
-    --accent:#2c5f8a; --chip:#eef2f6;
+    --accent:#2c5f8a; --chip:#eef2f6; --warn-bg:#fff4e0; --warn-ink:#8a5a00; --warn-line:#e8c887;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#191817; --surface:#232220; --ink:#eceae4; --ink-2:#b0ac9f; --ink-3:#807c6f;
       --line:#38362f; --up:#4cc98a; --down:#e5766c; --neutral:#b0ac9f;
-      --accent:#7fb0da; --chip:#2a3138;
+      --accent:#7fb0da; --chip:#2a3138; --warn-bg:#3a2f18; --warn-ink:#e8c887; --warn-line:#5c4a24;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -24,7 +24,7 @@
   .brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
   h1{font-size:26px;font-weight:700;margin-top:4px}
   .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
-  .pill{display:inline-block;background:var(--chip);color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;margin-left:8px;vertical-align:middle}
+  .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
   .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
@@ -33,25 +33,19 @@
   .kpi .ref{font-size:11.5px;color:var(--ink-3);margin-top:4px}
   .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--neutral)}
   section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
-  section h2{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  section h2{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   section p{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
   section p strong{color:var(--ink)}
   .tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:6px;padding:2px 8px}
   .tag.alta{background:rgba(26,122,74,.12);color:var(--up)}
   .tag.baixa{background:rgba(179,55,46,.12);color:var(--down)}
   .tag.misto{background:var(--chip);color:var(--neutral)}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
-  th{text-align:left;color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;padding:6px 8px;border-bottom:1px solid var(--line)}
-  td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--ink-2);font-variant-numeric:tabular-nums}
-  td:first-child{color:var(--ink);font-weight:600}
-  tr:last-child td{border-bottom:none}
   ul.agenda{list-style:none;margin-top:4px}
   ul.agenda li{font-size:14.5px;color:var(--ink-2);padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
   ul.agenda li:last-child{border-bottom:none}
-  ul.agenda .when{font-weight:700;color:var(--ink);min-width:82px;font-variant-numeric:tabular-nums}
+  ul.agenda .when{font-weight:700;color:var(--ink);min-width:96px;font-variant-numeric:tabular-nums}
   footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
   footer a{color:var(--accent);text-decoration:none}
-  footer a:hover{text-decoration:underline}
   .sources{margin-top:8px;line-height:1.9}
 </style>
 </head>
@@ -59,149 +53,106 @@
 <div class="wrap">
   <header>
     <div class="brand">Newsflow Agro</div>
-    <h1>Painel de Notícias <span class="pill">12H — PREGÃO ABERTO</span></h1>
-    <div class="meta">Quinta-feira, 30 de julho de 2026 · 12:15 (São Paulo, BR) · BGI · SJC · CCM · ICF</div>
+    <h1>Resumo Pré-Pregão</h1>
+    <div class="meta">Sexta-feira, 31 de julho de 2026 · 10:25 (São Paulo, BR) · BGI · SJC · CCM · ICF · balanço do pregão de <strong>quinta 30/07</strong></div>
+    <div class="banner">⚠️ As rodadas automáticas ficaram paradas entre 30/07 12h15 e 31/07 10h25 — o app chegou a exibir conteúdo de 29/07. Esta edição foi republicada manualmente. A causa está em apuração.</div>
   </header>
 
   <div class="kpis">
     <div class="kpi">
-      <div class="label">Boi Gordo · SP (Agrifatto)</div>
-      <div class="value">R$ 350,00/@</div>
-      <div class="delta up">▲ Firme · escala 6 dias</div>
-      <div class="ref">Agrifatto/DBO · 29/07</div>
+      <div class="label">Boi · Indicador CEPEA</div>
+      <div class="value">R$ 346,90/@</div>
+      <div class="delta down">▼ −0,14%</div>
+      <div class="ref">30/07 · +3,12% no mês</div>
     </div>
     <div class="kpi">
       <div class="label">Soja · Chicago Nov</div>
-      <div class="value">US$ 11,93/bu</div>
-      <div class="delta down">▼ −27¼¢ (fech. oficial)</div>
-      <div class="ref">CBOT · fech. 29/07 (TFM)</div>
+      <div class="value">US$ 11,88¾</div>
+      <div class="delta down">▼ −4¢</div>
+      <div class="ref">fech. 30/07 · −64¢ na semana</div>
     </div>
     <div class="kpi">
-      <div class="label">Milho · Chicago Set</div>
-      <div class="value">US$ 4,49/bu</div>
-      <div class="delta down">▼ −9½¢ (fech. oficial)</div>
-      <div class="ref">CBOT 29/07 · CCM Set/26: R$ 70,34 (−0,10%)</div>
+      <div class="label">Milho · B3 Set/26</div>
+      <div class="value">R$ 69,70</div>
+      <div class="delta down">▼ −0,41%</div>
+      <div class="ref">parcial 30/07 17h17</div>
     </div>
     <div class="kpi">
-      <div class="label">Dólar comercial</div>
-      <div class="value">R$ 5,1084</div>
-      <div class="delta down">▼ −0,27% (fechamento)</div>
-      <div class="ref">ADVFN · 29/07 pós-Fed</div>
+      <div class="label">Dólar</div>
+      <div class="value">R$ 5,06</div>
+      <div class="delta down">▼ ~−1%</div>
+      <div class="ref">fech. 30/07</div>
     </div>
     <div class="kpi">
       <div class="label">Café · NY Set/26</div>
-      <div class="value">325,80 ¢/lb</div>
-      <div class="delta down">▼ −4,01%</div>
-      <div class="ref">ICE US · fech. 29/07</div>
+      <div class="value">323,05 ¢/lb</div>
+      <div class="delta down">▼ −0,84%</div>
+      <div class="ref">ICE US · fech. 30/07</div>
     </div>
   </div>
 
   <section>
-    <h2>🐂 Boi Gordo (BGI) <span class="tag alta">Físico firme — spot pagando até R$ 355 em SP; escalas curtas</span></h2>
-    <p><strong>Compradores mais ativos (BeefPoint, 29/07):</strong> em Araçatuba e Barretos (SP), o boi gordo subiu R$ 3, para R$ 347/@ no pagamento a prazo, e o boi-China ganhou R$ 5, a R$ 349/@ — frigoríficos elevaram ofertas diante de escalas curtas (2 a 6 dias nas regiões monitoradas) e oferta restrita de boiadas prontas. Vaca e novilha estáveis.</p>
-    <p><strong>Spot acima da tabela (Portal DBO, 29/07, ref. mercado de 28/07):</strong> em São Paulo, negócios pontuais no spot chegaram a <strong>R$ 355/@</strong>, com o padrão entre R$ 345–350; Norte de Minas e Dourados (MS) subiram R$ 5/@ e Rondônia ajustou +R$ 10/@. Maior liquidez, oferta restrita de boiadas prontas e demanda de reposição superando a oferta disponível — quadro altista para o físico.</p>
-    <p><strong>Tabela Agrifatto/DBO do dia 29:</strong> São Paulo e Paraná lideram a R$ 350,00/@, com escalas de abate curtas na maior parte das praças — destaque para o Pará com apenas <strong>4 dias</strong>, sinal de oferta mais apertada de boiadas prontas. A variação regional reflete dinâmicas locais de oferta (Agrifatto, 29/07).</p>
-    <p><strong>Indicador CEPEA/B3 (SP, dado de 28/07):</strong> R$ 347,70/@, alta de 1,00% no dia e de 3,36% no mês. <strong>⚠️ Indicador de 29/07 segue pendente:</strong> nova consulta à página oficial às 12h desta quinta (4ª janela consecutiva) ainda retornava tabela com última linha de 28/07 (cache desatualizado do site), e a repercussão do valor de quarta não estava indexada. O valor exibido é de 28/07 — não confundir com o dado de quarta.</p>
-    <p><strong>Externo dá suporte:</strong> na CME, o live cattle Ago/26 fechou quarta a US$ 227,90/cwt (+0,42) e o feeder cattle Ago a US$ 344,27/cwt (+1,20) — pecuária firme nos EUA enquanto os grãos caíam (Brownfield, 29/07).</p>
-    <p><strong>Futuro na contramão do físico:</strong> FarmNews destaca vencimentos curtos do BGI em ajuste (quedas discretas até setembro entre 21 e 28/07), com recuperação esperada a partir de outubro e Jan/27 em alta. Mercado futuro "bastante volátil" na B3. Ajustes do BGI de quarta seguem sem repercussão em fonte aberta (n/d). Sustentação do físico: oferta reduzida, demanda doméstica aquecida, exportações em recuperação e frigoríficos com dificuldade para alongar escalas (FarmNews; Canal Rural).</p>
-    <table>
-      <thead><tr><th>Praça</th><th>Boi comum (R$/@)</th><th>Escala</th></tr></thead>
-      <tbody>
-        <tr><td>São Paulo</td><td>R$ 350,00</td><td>6 dias</td></tr>
-        <tr><td>Paraná</td><td>R$ 350,00</td><td>6 dias</td></tr>
-        <tr><td>Mato Grosso do Sul</td><td>R$ 345,00</td><td>5 dias</td></tr>
-        <tr><td>Goiás</td><td>R$ 335,00</td><td>6 dias</td></tr>
-        <tr><td>Pará</td><td>R$ 335,00</td><td>4 dias</td></tr>
-        <tr><td>Minas Gerais</td><td>R$ 330,00</td><td>7 dias</td></tr>
-        <tr><td>Maranhão</td><td>R$ 330,00</td><td>6 dias</td></tr>
-        <tr><td>Mato Grosso</td><td>R$ 325,00</td><td>6 dias</td></tr>
-        <tr><td>Tocantins</td><td>R$ 325,00</td><td>5 dias</td></tr>
-        <tr><td>Rondônia</td><td>R$ 320,00</td><td>6 dias</td></tr>
-      </tbody>
-    </table>
+    <h2>🐂 Boi Gordo (BGI) <span class="tag misto">Acomodação</span></h2>
+    <p><strong>Indicador CEPEA em leve queda pelo segundo pregão:</strong> R$ 346,90/@ em 30/07 (−0,14%), depois de R$ 347,40 em 29/07 e do pico de R$ 347,70 em 28/07. No mês, ainda acumula +3,12%.</p>
+    <p><strong>Físico:</strong> a referência mais recente por praça é de 29/07 (Agrifatto/DBO) — SP e PR a R$ 350, MS a 345, GO e PA a 335 — com escalas curtas, de 4 a 7 dias. A atualização de 30/07 por praça está pendente.</p>
+    <p><strong>Leitura para hoje:</strong> escala curta segue dando poder de barganha ao pecuarista, mas o indicador virou de alta para acomodação — atenção ao ritmo de compra dos frigoríficos e ao dólar mais fraco, que reduz o incentivo à exportação.</p>
   </section>
 
   <section>
-    <h2>🌱 Soja (SJC) <span class="tag baixa">Viés de baixa — abertura pressionada pelo fechamento fraco de Chicago</span></h2>
-    <p><strong>Referência para o pregão de hoje — fechamento oficial da CBOT (29/07):</strong> Ago a US$ 11,78/bu (−34¢, −2,80%) e Nov a US$ 11,93/bu (−27¼¢), queda bem mais acentuada que a parcial da tarde. Farelo Ago a US$ 315,30/t (−US$ 5,00) e óleo a 69,17 ¢/lb (−1,59¢) (TFM; confirmado por Divulgar Dinheiro e Brownfield). A parcial desta quinta seguia sem repercussão em fonte aberta às 12h (n/d).</p>
-    <p><strong>O que derrubou:</strong> previsões mais frias e úmidas para o Meio-Oeste americano dispararam liquidação de posições compradas. Do lado da demanda, a estimativa de exportação de soja do Brasil subiu para 115,4 milhões de t — mais concorrência para os EUA (TFM, 29/07).</p>
-    <p><strong>Indicador CEPEA/Esalq (29/07, tabela oficial):</strong> Paranaguá a R$ 146,81/sc, queda de 0,73% no dia (+9,90% no mês) — o físico brasileiro devolveu parte da alta recente acompanhando a queda forte de Chicago (na véspera, 28/07, Paranaguá marcara R$ 147,89, +0,09%).</p>
-    <p><strong>Brasil:</strong> prêmios nos portos "em níveis bastante agressivos", mas negócios lentos — produtor vende da mão para a boca. Referências Safras (29/07): Paranaguá R$ 148,00/sc, Rio Grande R$ 148,50/sc, Passo Fundo R$ 142,50/sc. Com Chicago em queda forte e dólar mais fraco, tendência de mercado interno ainda mais lento hoje.</p>
-    <p><strong>Contraponto altista:</strong> condição boa/excelente da lavoura americana caiu de 66% para 63% no último Crop Progress (27/07), maior queda para julho desde 2012 — agosto define o rendimento. O Export Sales semanal do USDA (semana até 23/07) saiu às 9h30; até 12h os números ainda não haviam repercutido em fonte aberta — a busca segue retornando apenas semanas anteriores (últimos dados disponíveis são da semana até 16/07: China liderando compras de soja, México as de milho). Atualização nas rodadas da tarde.</p>
+    <h2>🌱 Soja (SJC) <span class="tag baixa">Viés de baixa</span></h2>
+    <p><strong>Semana pesada em Chicago:</strong> Nov/26 fechou 30/07 a US$ 11,88¾ (−4¢), acumulando <strong>perda de mais de 64¢ na semana</strong>; Ago/26 a US$ 11,77¼ (−¾¢). Farelo Ago a US$ 314,10 (−1,20) e óleo a 68,35¢ (−0,82).</p>
+    <p><strong>Driver dominante — clima:</strong> previsões seguem mais úmidas e frias no Meio-Oeste americano, desmontando o prêmio de risco que sustentou os preços em julho. O fundo vendeu, e o óleo só não caiu mais por causa do petróleo em alta com a tensão envolvendo o Irã.</p>
+    <p><strong>Brasil:</strong> indicador CEPEA de Paranaguá mais recente disponível é o de 29/07 (R$ 146,81, −0,73%); o de 30/07 está pendente. Dólar mais fraco pressiona a paridade de exportação.</p>
   </section>
 
   <section>
-    <h2>🌽 Milho (CCM) <span class="tag baixa">Viés de baixa — Chicago fechou em queda; CCM devolveu pouco na B3</span></h2>
-    <p><strong>Fechamento oficial da CBOT (29/07):</strong> Set a US$ 4,49/bu (−9½¢) e Dez a US$ 4,7175/bu (−8¾¢) — TFM, confirmado por Divulgar Dinheiro e Brownfield. A melhora do clima previsto nos EUA disparou liquidação de comprados, revertendo a alta da abertura. Sustentação: moagem de etanol robusta, 330 milhões de galões na semana (TFM, 29/07).</p>
-    <p><strong>B3 — fechamento de quarta (29/07):</strong> Set/26 a R$ 70,34 (−0,10%), Jan/27 a R$ 77,70 (−0,08%), Mar/27 a R$ 79,40 (−0,01%) e Mai/27 a R$ 77,77 (−0,04%) (Divulgar Dinheiro). Leve realização depois da alta de ~2% de terça — o CCM devolveu bem menos que Chicago, sustentado pelo físico interno.</p>
-    <p><strong>Indicador CEPEA/Esalq Campinas (29/07, tabela oficial):</strong> R$ 65,33/sc, alta de 0,17% no dia (+2,75% no mês) — físico interno firme na contramão da queda de Chicago, confirmando o suporte doméstico ao CCM.</p>
-    <p><strong>Drivers:</strong> condição da lavoura EUA em 63% B/E (queda de 4 p.p., uma das maiores de julho já registradas) e demanda externa firme versus padrão mais úmido no Meio-Oeste na entrada de agosto — que prevaleceu no fechamento de quarta.</p>
-    <p><strong>Brasil:</strong> colheita da safrinha avança com tempo seco — MT acima de 60% da área (Mais Agro, 27/07); seca de abril comprometeu lavouras tardias em GO e MG.</p>
+    <h2>🌽 Milho (CCM) <span class="tag baixa">Viés de baixa</span></h2>
+    <p><strong>Chicago cedeu:</strong> Set/26 a US$ 4,45¾ (−3¼¢) e Dez/26 a US$ 4,68¼ (−3¼¢) no fechamento de 30/07, com o mesmo driver climático da soja — chuva e temperatura amena no cinturão americano na virada do mês.</p>
+    <p><strong>B3:</strong> na parcial das 17h17 de 30/07, Set/26 recuava a R$ 69,70 (−0,41%) enquanto os alongados sustentavam viés positivo (Mai/27 a R$ 78,61, +0,14%). O ajuste oficial do dia ainda não saiu em fonte aberta.</p>
+    <p><strong>Ponto de atenção:</strong> Crop Progress de segunda (03/08) deve mostrar recuperação das condições da lavoura após a virada climática — risco baixista adicional para os vencimentos curtos.</p>
   </section>
 
   <section>
-    <h2>☕ Café (ICF) <span class="tag baixa">Viés de baixa — correção em NY chegou ao físico: CEPEA caiu 1,13%</span></h2>
-    <p><strong>Reversão em NY:</strong> depois do salto de +4,58% na terça, o arábica devolveu com força na quarta — Set/26 fechou a 325,80 ¢/lb (−4,01%) e Dez/26 a 308,55 ¢/lb (−2,76%) (Cotação do Café, 29/07). A abertura desta quinta seguia sem repercussão às 12h (n/d).</p>
-    <p><strong>Robusta acompanhou:</strong> Londres Set/26 a US$ 3.773/t (−2,68%), com quedas de ~2,8% nos demais vencimentos. Pressão ligada ao avanço da colheita no Brasil (Notícias Agrícolas, 29/07).</p>
-    <p><strong>Indicador CEPEA/Esalq (29/07, tabela oficial):</strong> arábica tipo 6 a <strong>R$ 1.761,96/sc, queda de 1,13% no dia</strong> (+11,61% no mês; US$ 345,35) — a correção de NY chegou ao físico, interrompendo a sequência de altas (27/07: R$ 1.725,66, +2,95%; 28/07: R$ 1.782,18, +3,28%). Robusta (28/07): R$ 1.114,00/sc (+2,45%); valor de 29/07 n/d.</p>
-    <p><strong>ICF B3:</strong> Set/26 a US$ 406,50/saca (−0,25%) — queda bem mais contida que NY (Cotação do Café, 29/07). Físico brasileiro segue travado, com produtor vendendo apenas o necessário; umidade/chuvas em MG ainda ameaçam qualidade na reta final da colheita.</p>
+    <h2>☕ Café (ICF) <span class="tag baixa">Correção</span></h2>
+    <p><strong>Arábica segue corrigindo:</strong> NY Set/26 fechou 30/07 a 323,05 ¢/lb (−0,84%), terceiro dia de queda após o pico de 28/07 (339,40). Dez/26 a 307,70 (−0,28%).</p>
+    <p><strong>Robusta estabilizou:</strong> Londres Set/26 a US$ 3.780/t (+0,19%). Na B3, o ICF Set/26 fechou a US$ 395,75/saca (−0,21%) — abaixo dos US$ 400 pela primeira vez na semana.</p>
+    <p><strong>Brasil:</strong> indicador CEPEA disponível é o de 29/07 (R$ 1.761,96, −1,13%); o de 30/07 está pendente. Estoques certificados baixos na ICE seguem como suporte estrutural, contra a pressão da colheita brasileira em andamento.</p>
   </section>
 
   <section>
     <h2>💵 Câmbio &amp; Macro</h2>
-    <p><strong>Dólar fechou a R$ 5,1084 (−0,27%)</strong> na quarta: o Fed manteve os juros na faixa de 3,50%–3,75% a.a. e o enfraquecimento global da moeda americana (DXY −0,52%) favoreceu o real; após a reunião, as apostas em alta de juros nos EUA para setembro diminuíram (ADVFN, 29/07). Ibovespa caiu 1,52%, a 173.885 pontos. Parcial do dólar desta quinta sem repercussão validada até 12h (n/d).</p>
-    <p><strong>Petróleo no radar:</strong> Brent fechou a US$ 87,62 (+7,43%) na quarta com tensões entre EUA e Irã (ADVFN, 29/07) — aversão ao risco e pressão em custos de frete e no complexo etanol/milho; acompanhar desdobramentos hoje.</p>
-    <p><strong>Copom: reunião na próxima semana (4–5/08, decisão quarta 05/08).</strong> Selic vigente: <strong>14,25% a.a.</strong>, após corte de 0,25 p.p. em 18/06 (Sou Brasília; InfoMoney).</p>
+    <p><strong>Dólar caiu quase 1% em 30/07, a R$ 5,06</strong>, pressionado pela leitura do Fed e por dados de inflação nos EUA. Real mais forte reduz a receita em reais do exportador e pesa sobre as paridades de boi, soja e café.</p>
+    <p><strong>Próximo evento doméstico:</strong> Copom em 4–5/08, com anúncio no dia 5. Selic vigente: 14,25% a.a.</p>
   </section>
 
   <section>
     <h2>🌦️ Clima — regiões produtoras</h2>
-    <p><strong>EUA — Corn Belt:</strong> o driver da semana — previsões mais frias e úmidas para o Meio-Oeste derrubaram soja e milho no fechamento de quarta (TFM, 29/07). Contraponto: julho foi o mais seco em 12 anos nas áreas de milho (3,42" vs 5,17" em 2025) (DTN, 27/07) — a briga entre chuva prevista e dano já feito define agosto.</p>
-    <p><strong>Brasil — Centro-Oeste/Sudeste (MT, GO, MG, SP):</strong> tempo seco predomina no cinturão da safrinha e acelera a colheita; umidade dos grãos ainda desacelera trabalhos em GO (refs. 27–28/07).</p>
-    <p><strong>Brasil — Sul (RS, PR, SC):</strong> inverno sob El Niño — mais umidade e menos frio que o normal (EPAGRI/CIRAM). Sem alerta novo de geada confirmado nesta madrugada.</p>
-    <p><strong>Brasil — regiões cafeeiras (Sul de Minas, Cerrado Mineiro, Mogiana, ES):</strong> re-checado às 8h desta quinta — <strong>nenhum alerta novo de geada confirmado</strong>; os alertas em circulação nas buscas seguem antigos (frente fria/geada no Sul de 13–14/07; alerta de 14/07 para 53 cidades de MG; artigo de "risco de geada em agosto" datava de 2025). Chuvas e umidade em MG seguem ameaçando a qualidade na reta final da colheita (CNN Agro). Risco de geada permanece o evento crítico da época — monitorar frentes frias na virada para agosto.</p>
+    <p><strong>EUA — Corn Belt:</strong> é o fator do momento. Depois do julho mais seco em 12 anos, a virada para chuva e temperaturas amenas no fim do mês desarmou o prêmio climático e derrubou soja e milho. O relatório de 03/08 tende a confirmar melhora das condições.</p>
+    <p><strong>Brasil — Sul (RS, PR, SC):</strong> inverno sob El Niño, com mais umidade e menos frio que o normal; sem alerta novo de geada severa confirmado até esta manhã. Monitorar frentes frias no fim de semana.</p>
+    <p><strong>Brasil — Centro-Oeste/Sudeste (MT, GO, MG, SP):</strong> tempo seco típico da estação favorece o fim da colheita da safrinha; nas regiões cafeeiras (Sul de Minas, Cerrado, Mogiana), o risco de geada segue como o evento crítico do calendário — sem ocorrência relevante nos últimos dias.</p>
   </section>
 
   <section>
     <h2>📅 Agenda</h2>
     <ul class="agenda">
-      <li><span class="when">Hoje 09:00</span><span>✅ Pregão da B3 aberto — atenção à reação do CCM/SJC ao fechamento fraco de Chicago e do BGI ao físico firme (Agrifatto 29/07; BeefPoint 29/07)</span></li>
-      <li><span class="when">Hoje 09:30</span><span>✅ USDA Export Sales semanal divulgado (semana até 23/07) — números ainda sem repercussão em fonte aberta às 12h; atualização nas rodadas da tarde</span></li>
-      <li><span class="when">Hoje tarde</span><span>Indicador CEPEA do boi de 29/07 (pendente) e indicadores do dia 30; tabela Agrifatto/DBO de 30/07</span></li>
-      <li><span class="when">Seg 03/08</span><span>USDA Crop Progress (último, 27/07: milho 63% B/E, soja 63% B/E)</span></li>
-      <li><span class="when">Ter–Qua 4–5/08</span><span>Copom — decisão na quarta 05/08 (Selic vigente: 14,25% a.a.)</span></li>
+      <li><span class="when">Hoje</span><span>Último pregão da semana — posicionamento antes do fim de semana; fechamento de julho</span></li>
+      <li><span class="when">Seg 03/08</span><span>USDA Crop Progress — expectativa de melhora nas condições após a virada climática</span></li>
+      <li><span class="when">Ter–Qua 04–05/08</span><span>Copom — anúncio da Selic em 05/08</span></li>
+      <li><span class="when">Qui 06/08</span><span>USDA Export Sales semanal (9h30, Brasília)</span></li>
     </ul>
   </section>
 
   <footer>
     <div><strong>Fontes desta edição:</strong></div>
     <div class="sources">
-      <a href="https://beefpoint.com.br/preco-do-boi-gordo-sobe-com-escalas-de-abate-curtas-e-oferta-restrita-de-animais/">BeefPoint — boi sobe R$ 3 em Araçatuba/Barretos; boi-China R$ 349 (29/07)</a> ·
-      <a href="https://portaldbo.com.br/precos-do-boi-gordo-sobem-com-mercado-mais-ativo/">Portal DBO — preços sobem com mercado mais ativo; spot a R$ 355/@ em SP (29/07, ref. 28/07)</a> ·
-      <a href="https://www.cepea.org.br/br/indicador/milho.aspx">CEPEA/Esalq — Indicador milho Campinas 29/07 (tabela oficial)</a> ·
-      <a href="https://www.cepea.org.br/br/indicador/soja.aspx">CEPEA/Esalq — Indicador soja Paranaguá 29/07 (tabela oficial)</a> ·
-      <a href="https://www.cepea.org.br/br/indicador/cafe.aspx">CEPEA/Esalq — Indicador café arábica 29/07 (tabela oficial, via captura do usuário)</a> ·
-      <a href="https://www.cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA/Esalq — Indicador boi 28/07 (29/07 pendente — cache desatualizado na consulta das 12h)</a> ·
-      <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-29-7-26/">Portal DBO / Agrifatto — boi por praça e escalas (29/07)</a> ·
-      <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-07-29-2026/">TFM Daily Market Summary — fechamento oficial CBOT: soja, milho, farelo/óleo (29/07)</a> ·
-      <a href="https://brownfieldagnews.com/">Brownfield Ag News — Closing Grain and Livestock Futures: live/feeder cattle CME e grãos (29/07)</a> ·
-      <a href="https://divulgardinheiro.com/futuros-do-milho-acompanham-perdas-da-soja-e-fecham-quarta-feira-caindo-2/">Divulgar Dinheiro — milho CBOT e ajustes CCM B3 por vencimento (29/07)</a> ·
-      <a href="https://divulgardinheiro.com/soja-fecha-em-forte-baixa-em-chicago-com-previsao-de-clima-mais-favoravel-nos-eua/">Divulgar Dinheiro — soja fecha a US$ 11,78 (−2,80%), confirmação (29/07)</a> ·
-      <a href="https://br.advfn.com/jornal/2026/07/dolar-cai-apos-fed-manter-juros-com-enfraquecimento-da-moeda-no-exterior-favorecendo-o-real">ADVFN — dólar fecha a R$ 5,1084 pós-Fed; Ibovespa; Brent (29/07)</a> ·
-      <a href="https://farmnews.com.br/mercado/futuro-do-boi-gordo-contraria-o-fisico-no-final-de-julho/">FarmNews — futuro do boi na contramão do físico (29/07)</a> ·
-      <a href="https://www.canalrural.com.br/pecuaria/mercado-do-boi-gordo-enfrenta-dificuldade-para-alongar-escalas-de-abate-confira-os-numeros">Canal Rural — escalas de abate</a> ·
-      <a href="https://safras.com.br/perdas-em-chicago-devem-manter-mercado-de-soja-lento-no-brasil">Safras &amp; Mercado — soja portos (29/07)</a> ·
-      <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café — NY, Londres e ICF B3 (29/07)</a> ·
-      <a href="https://www.noticiasagricolas.com.br/noticias/cafe/424345-cafe-abre-a-4-feira-com-arabica-sustentado-em-nova-york-e-robusta-recuando-em-londres-diante-do-avanco-da-colheita-no-brasil.html">Notícias Agrícolas — café (29/07)</a> ·
-      <a href="https://www.indexbox.io/blog/usda-agtransport-export-sales-report-july-16-2026/">IndexBox — USDA Export Sales, última semana repercutida (até 16/07)</a> ·
-      <a href="https://soubrasilia.com/copom-selic-agosto-2026-expectativa/">Sou Brasília — próximo Copom 4–5/08, Selic 14,25%</a> ·
-      <a href="https://www.infomoney.com.br/economia/banco-central-copom-decisao-selic-17062026/">InfoMoney — Selic 14,25% (corte de junho, referência)</a> ·
-      <a href="https://www.dtnpf.com/agriculture/web/ag/blogs/ag-weather-forum/blog-post/2026/07/27/july-brought-12-year-low-us-corn">DTN — clima Corn Belt (27/07)</a> ·
-      <a href="https://maisagro.syngenta.com.br/mercado-e-safra/colheita-do-milho-safrinha-2026-atinge-60-em-mato-grosso-e-ganha-ritmo-com-melhora-do-clima/">Mais Agro — safrinha MT</a> ·
-      <a href="https://ciram.epagri.sc.gov.br/index.php/2026/05/29/climatica/">EPAGRI/CIRAM — inverno El Niño</a> ·
-      <a href="https://www.cnnbrasil.com.br/agro/umidade-e-chuvas-ameacam-qualidade-do-cafe-em-minas-gerais/">CNN Agro — café MG</a>
+      <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA — indicador boi (30/07)</a> ·
+      <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-07-30-2026/">Total Farm Marketing — fechamento CBOT 30/07</a> ·
+      <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café — NY/Londres/ICF 30/07</a> ·
+      <a href="https://www.noticiasagricolas.com.br/noticias/milho/425645-b-3-corrige-primeiras-cotacoes-do-milho-para-baixo-nesta-quinta-feira-mas-vencimentos-alongados-seguem-em-vies-positivo.html">Notícias Agrícolas — CCM parcial 30/07</a> ·
+      <a href="https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-30072026/">InfoMoney — dólar 30/07</a> ·
+      <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-29-7-26/">Portal DBO/Agrifatto — praças 29/07</a>
     </div>
-    <p style="margin-top:10px">Material informativo para a mesa de operações — não constitui recomendação de investimento. Dados marcados com a data de referência; "n/d" indica número não confirmado em fonte aberta até 12:15 de 30/07/2026. Nota desta edição (12h): adicionado o spot do boi a R$ 355/@ em SP e ajustes regionais via Portal DBO (artigo de 29/07, ref. mercado de 28/07); CEPEA boi de 29/07 segue pendente (consulta das 12h — 4ª janela — ainda retornava tabela com última linha de 28/07); Export Sales de hoje (semana até 23/07) segue sem repercussão em fonte aberta; parciais da manhã de Chicago/NY seguem sem repercussão confiável (artigo "nesta 5ª" retornado pela busca era de 16/07 — descartado por data).</p>
+    <p style="margin-top:10px">Pendências para as próximas rodadas: indicadores CEPEA de milho, soja e café de 30/07; ajuste oficial do CCM B3 de 30/07; boi por praça de 30/07; pecuária CME de 30/07. Material informativo para a mesa de operações — não constitui recomendação de investimento.</p>
   </footer>
 </div>
 </body>

@@ -1,0 +1,15 @@
+{
+  "name": "Newsflow Agro",
+  "short_name": "Newsflow",
+  "description": "Notícias e cotações do agro para a mesa de operações — BGI, SJC, CCM e ICF",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1d3b2a",
+  "theme_color": "#1d3b2a",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

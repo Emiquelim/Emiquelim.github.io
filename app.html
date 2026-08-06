@@ -14,9 +14,10 @@
 <style>
   :root{
     --bg:#f6f5f1; --ink:#1f1e1b; --accent:#1d3b2a; --accent-ink:#ffffff; --muted:#8a8677;
+    --surface:#ffffff; --line:#e5e2d9;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#191817; --ink:#eceae4; --accent:#2f5c42; --accent-ink:#f2f0ea; --muted:#807c6f; }
+    :root{ --bg:#191817; --ink:#eceae4; --accent:#2f5c42; --accent-ink:#f2f0ea; --muted:#807c6f; --surface:#232220; --line:#38362f; }
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -27,12 +28,22 @@
   .title small{opacity:.75;font-weight:500;font-size:12px;margin-left:8px}
   .status{font-size:11px;opacity:.8;padding-bottom:8px}
   button.refresh{background:rgba(255,255,255,.16);color:var(--accent-ink);border:none;border-radius:8px;padding:7px 14px;font-size:15px;font-weight:700;cursor:pointer}
-  nav{display:flex;gap:4px}
-  nav button{flex:1;background:transparent;color:var(--accent-ink);border:none;opacity:.65;padding:10px 8px;font-size:14px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent}
+  nav{display:flex;gap:2px}
+  nav button{flex:1;background:transparent;color:var(--accent-ink);border:none;opacity:.6;padding:10px 4px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
   nav button.active{opacity:1;border-bottom-color:var(--accent-ink)}
   main{flex:1;position:relative;overflow:hidden}
-  iframe{position:absolute;inset:0;width:100%;height:100%;border:none;background:var(--bg);display:none}
-  iframe.active{display:block}
+  iframe.panel{position:absolute;inset:0;width:100%;height:100%;border:none;background:var(--bg);display:none}
+  iframe.panel.active{display:block}
+  #cepea{position:absolute;inset:0;overflow-y:auto;display:none;padding:14px 12px 30px;-webkit-overflow-scrolling:touch}
+  #cepea.active{display:block}
+  .intro{font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+  .box>h3{font-size:14px;font-weight:700;padding:11px 14px;color:var(--ink)}
+  .box .fr{height:440px;border-top:1px solid var(--line);background:#fff}
+  .box .fr iframe{width:100%;height:100%;border:none}
+  .box .fb{font-size:11.5px;color:var(--muted);padding:8px 14px;border-top:1px dashed var(--line)}
+  .box .fb a{color:var(--accent);font-weight:700;text-decoration:none}
+  @media (prefers-color-scheme: dark){ .box .fb a{color:#7fd1a3} }
   .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:14px}
 </style>
 </head>
@@ -46,15 +57,42 @@
     <nav>
       <button id="tab-noticias" class="active" onclick="show('noticias')">📰 Notícias</button>
       <button id="tab-dados" onclick="show('dados')">📊 Cotações</button>
+      <button id="tab-cepea" onclick="show('cepea')">🟢 CEPEA ao vivo</button>
     </nav>
   </header>
   <main>
-    <iframe id="frame-noticias" class="active" title="Notícias"></iframe>
-    <iframe id="frame-dados" title="Cotações"></iframe>
+    <iframe id="frame-noticias" class="panel active" title="Notícias"></iframe>
+    <iframe id="frame-dados" class="panel" title="Cotações"></iframe>
+    <div id="cepea">
+      <div class="intro"><strong>Direto da fonte oficial.</strong> Estas caixas são carregadas pelo seu próprio navegador no site do CEPEA — mostram sempre o dado mais recente publicado, sem passar pela coleta automatizada. Os indicadores do dia saem entre 17h e 19h30.</div>
+
+      <div class="box">
+        <h3>🐂 Boi gordo — Indicador CEPEA/B3</h3>
+        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/boi-gordo.aspx" loading="lazy" title="CEPEA boi gordo"></iframe></div>
+        <div class="fb">Caixa vazia? O CEPEA está bloqueando a exibição embutida — abra direto: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx" target="_blank" rel="noopener">cepea.org.br › boi gordo ↗</a></div>
+      </div>
+
+      <div class="box">
+        <h3>🌽 Milho — Indicador CEPEA/B3 (Campinas)</h3>
+        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/milho.aspx" loading="lazy" title="CEPEA milho"></iframe></div>
+        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/milho.aspx" target="_blank" rel="noopener">cepea.org.br › milho ↗</a></div>
+      </div>
+
+      <div class="box">
+        <h3>🌱 Soja — Indicador CEPEA/B3 (Paranaguá)</h3>
+        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/soja.aspx" loading="lazy" title="CEPEA soja"></iframe></div>
+        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/soja.aspx" target="_blank" rel="noopener">cepea.org.br › soja ↗</a></div>
+      </div>
+
+      <div class="box">
+        <h3>☕ Café — Indicador CEPEA (arábica e conilon)</h3>
+        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/cafe.aspx" loading="lazy" title="CEPEA café"></iframe></div>
+        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/cafe.aspx" target="_blank" rel="noopener">cepea.org.br › café ↗</a></div>
+      </div>
+    </div>
     <div class="msg" id="msg" style="display:none"></div>
   </main>
 <script>
-  // Lê os painéis direto do repositório (raw), evitando o cache do GitHub Pages.
   var BASE = 'https://raw.githubusercontent.com/Emiquelim/Emiquelim.github.io/main/';
   var loading = false;
 
@@ -74,7 +112,7 @@
       .then(function(){
         var d = new Date();
         var hh = String(d.getHours()).padStart(2,'0'), mm = String(d.getMinutes()).padStart(2,'0');
-        setStatus('conteúdo carregado às ' + hh + ':' + mm + ' — toque em ↻ para atualizar');
+        setStatus('carregado às ' + hh + ':' + mm + ' — ↻ atualiza · aba CEPEA é ao vivo');
         document.getElementById('msg').style.display = 'none';
       })
       .catch(function(e){
@@ -87,13 +125,14 @@
   }
 
   function show(name){
-    ['noticias','dados'].forEach(function(n){
+    ['noticias','dados','cepea'].forEach(function(n){
       document.getElementById('tab-'+n).classList.toggle('active', n===name);
-      document.getElementById('frame-'+n).classList.toggle('active', n===name);
+      var el = (n==='cepea') ? document.getElementById('cepea') : document.getElementById('frame-'+n);
+      el.classList.toggle('active', n===name);
     });
   }
 
-  // Limpa service worker e caches da versão antiga do app (que ficavam presos em conteúdo velho)
+  // limpa service worker e caches da versão antiga do app
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); });
   }

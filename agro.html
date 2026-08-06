@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Newsflow Agro</title>
+<meta name="theme-color" content="#1d3b2a">
+<link rel="manifest" href="app.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Newsflow Agro">
+<style>body{margin:0;background:#1d3b2a;color:#f2f0ea;font-family:ui-sans-serif,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;padding:20px}</style>
+</head>
+<body>
+<div id="boot">🐂 carregando a versão mais recente…</div>
+<script>
+// Carrega SEMPRE a última versão do app direto do raw, sem passar pelo cache do Pages.
+fetch('https://raw.githubusercontent.com/Emiquelim/Emiquelim.github.io/main/app.html?t=' + Date.now(), {cache:'no-store'})
+  .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+  .then(function(h){ document.open(); document.write(h); document.close(); })
+  .catch(function(e){
+    document.getElementById('boot').innerHTML =
+      'Não consegui carregar o app (' + e.message + ').<br><br>' +
+      '<a style="color:#7fd1a3" href="https://emiquelim.github.io/app.html">tentar a versão publicada ↗</a>';
+  });
+</script>
+</body>
+</html>

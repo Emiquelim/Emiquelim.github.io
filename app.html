@@ -14,10 +14,10 @@
 <style>
   :root{
     --bg:#f6f5f1; --ink:#1f1e1b; --accent:#1d3b2a; --accent-ink:#ffffff; --muted:#8a8677;
-    --surface:#ffffff; --line:#e5e2d9;
+    --surface:#ffffff; --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --warn:#c07a1e;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#191817; --ink:#eceae4; --accent:#2f5c42; --accent-ink:#f2f0ea; --muted:#807c6f; --surface:#232220; --line:#38362f; }
+    :root{ --bg:#191817; --ink:#eceae4; --accent:#2f5c42; --accent-ink:#f2f0ea; --muted:#807c6f; --surface:#232220; --line:#38362f; --up:#4cc98a; --down:#e5766c; --warn:#e0a44e; }
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -34,17 +34,30 @@
   main{flex:1;position:relative;overflow:hidden}
   iframe.panel{position:absolute;inset:0;width:100%;height:100%;border:none;background:var(--bg);display:none}
   iframe.panel.active{display:block}
-  #cepea{position:absolute;inset:0;overflow-y:auto;display:none;padding:14px 12px 30px;-webkit-overflow-scrolling:touch}
+  #cepea{position:absolute;inset:0;overflow-y:auto;display:none;padding:14px 12px 34px;-webkit-overflow-scrolling:touch}
   #cepea.active{display:block}
   .intro{font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.5}
-  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
-  .box>h3{font-size:14px;font-weight:700;padding:11px 14px;color:var(--ink)}
-  .box .fr{height:440px;border-top:1px solid var(--line);background:#fff}
-  .box .fr iframe{width:100%;height:100%;border:none}
-  .box .fb{font-size:11.5px;color:var(--muted);padding:8px 14px;border-top:1px dashed var(--line)}
-  .box .fb a{color:var(--accent);font-weight:700;text-decoration:none}
-  @media (prefers-color-scheme: dark){ .box .fb a{color:#7fd1a3} }
+  .intro a{color:var(--accent);font-weight:700;text-decoration:none}
+  @media (prefers-color-scheme: dark){ .intro a{color:#7fd1a3} }
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:13px 15px}
+  .card .top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .card .nome{font-size:13.5px;font-weight:700}
+  .card .tag{font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px;white-space:nowrap}
+  .tag.ok{background:rgba(26,122,74,.14);color:var(--up)}
+  .tag.old{background:rgba(192,122,30,.16);color:var(--warn)}
+  .tag.err{background:rgba(179,55,46,.14);color:var(--down)}
+  .card .val{font-size:25px;font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .card .val span.un{font-size:13px;font-weight:600;color:var(--muted);margin-left:5px;letter-spacing:0}
+  .card .lin{font-size:12.5px;margin-top:3px;font-weight:600;font-variant-numeric:tabular-nums}
+  .card .ref{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .card .ref a{color:var(--accent);font-weight:700;text-decoration:none}
+  @media (prefers-color-scheme: dark){ .card .ref a{color:#7fd1a3} }
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .skel{color:var(--muted);font-size:13px;margin-top:6px}
   .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:14px}
+  .liveline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .liveline button{background:var(--accent);color:var(--accent-ink);border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer}
+  .liveline .lst{font-size:11.5px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -64,31 +77,13 @@
     <iframe id="frame-noticias" class="panel active" title="Notícias"></iframe>
     <iframe id="frame-dados" class="panel" title="Cotações"></iframe>
     <div id="cepea">
-      <div class="intro"><strong>Direto da fonte oficial.</strong> Estas caixas são carregadas pelo seu próprio navegador no site do CEPEA — mostram sempre o dado mais recente publicado, sem passar pela coleta automatizada. Os indicadores do dia saem entre 17h e 19h30.</div>
-
-      <div class="box">
-        <h3>🐂 Boi gordo — Indicador CEPEA/B3</h3>
-        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/boi-gordo.aspx" loading="lazy" title="CEPEA boi gordo"></iframe></div>
-        <div class="fb">Caixa vazia? O CEPEA está bloqueando a exibição embutida — abra direto: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx" target="_blank" rel="noopener">cepea.org.br › boi gordo ↗</a></div>
+      <div class="liveline">
+        <div class="lst" id="cepea-status">toque em Buscar agora</div>
+        <button onclick="loadCepea()">Buscar agora</button>
       </div>
-
-      <div class="box">
-        <h3>🌽 Milho — Indicador CEPEA/B3 (Campinas)</h3>
-        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/milho.aspx" loading="lazy" title="CEPEA milho"></iframe></div>
-        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/milho.aspx" target="_blank" rel="noopener">cepea.org.br › milho ↗</a></div>
-      </div>
-
-      <div class="box">
-        <h3>🌱 Soja — Indicador CEPEA/B3 (Paranaguá)</h3>
-        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/soja.aspx" loading="lazy" title="CEPEA soja"></iframe></div>
-        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/soja.aspx" target="_blank" rel="noopener">cepea.org.br › soja ↗</a></div>
-      </div>
-
-      <div class="box">
-        <h3>☕ Café — Indicador CEPEA (arábica e conilon)</h3>
-        <div class="fr"><iframe src="https://cepea.org.br/br/indicador/cafe.aspx" loading="lazy" title="CEPEA café"></iframe></div>
-        <div class="fb">Caixa vazia? <a href="https://cepea.org.br/br/indicador/cafe.aspx" target="_blank" rel="noopener">cepea.org.br › café ↗</a></div>
-      </div>
+      <div class="intro"><strong>Leitura ao vivo.</strong> Seu próprio navegador lê a série oficial de cada indicador e mostra a última linha publicada, com a data que está na fonte. Os indicadores do dia saem entre 17h e 19h30 — antes disso o correto é aparecer a data do pregão anterior.</div>
+      <div id="cepea-cards"></div>
+      <div class="intro" style="margin-top:12px">Fonte oficial, se quiser conferir: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx" target="_blank" rel="noopener">boi</a> · <a href="https://cepea.org.br/br/indicador/milho.aspx" target="_blank" rel="noopener">milho</a> · <a href="https://cepea.org.br/br/indicador/soja.aspx" target="_blank" rel="noopener">soja</a> · <a href="https://cepea.org.br/br/indicador/cafe.aspx" target="_blank" rel="noopener">café</a></div>
     </div>
     <div class="msg" id="msg" style="display:none"></div>
   </main>
@@ -130,9 +125,117 @@
       var el = (n==='cepea') ? document.getElementById('cepea') : document.getElementById('frame-'+n);
       el.classList.toggle('active', n===name);
     });
+    if(name==='cepea' && !cepeaLoaded) loadCepea();
   }
 
-  // limpa service worker e caches da versão antiga do app
+  /* ---------- CEPEA ao vivo ---------- */
+  var NA = 'https://www.noticiasagricolas.com.br/cotacoes/';
+  var CEPEA = [
+    {k:'boi',  ic:'🐂', nome:'Boi gordo — Indicador CEPEA/B3',        un:'R$/@',       url:NA+'boi-gordo/boi-gordo-indicador-esalq-bmf'},
+    {k:'milho',ic:'🌽', nome:'Milho — Indicador ESALQ/B3 Campinas',   un:'R$/sc 60kg', url:NA+'milho/indicador-cepea-esalq-milho'},
+    {k:'soja', ic:'🌱', nome:'Soja — Indicador CEPEA/B3 Paranaguá',   un:'R$/sc 60kg', url:NA+'soja/soja-indicador-cepea-esalq-porto-paranagua'},
+    {k:'cafe', ic:'☕', nome:'Café arábica — Indicador CEPEA/ESALQ',  un:'R$/sc 60kg', url:NA+'cafe/indicador-cepea-esalq-cafe-arabica'},
+    {k:'coni', ic:'☕', nome:'Café robusta/conilon — CEPEA',          un:'R$/sc 60kg', url:NA+'cafe/indicador-cepea-esalq-cafe-conillon'}
+  ];
+  var PROXIES = [
+    function(u){ return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u); },
+    function(u){ return 'https://corsproxy.io/?url=' + encodeURIComponent(u); },
+    function(u){ return 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(u); },
+    function(u){ return 'https://r.jina.ai/' + u; }
+  ];
+  var cepeaLoaded = false;
+
+  function toText(html){
+    return html.replace(/<script[\s\S]*?<\/script>/gi,' ')
+               .replace(/<style[\s\S]*?<\/style>/gi,' ')
+               .replace(/<[^>]+>/g,'\n')
+               .replace(/&nbsp;/g,' ')
+               .replace(/[ \t]+/g,' ');
+  }
+
+  var ROW  = /(\d{2}\/\d{2}\/\d{4})\s*\n?\s*(\d{1,3}(?:\.\d{3})*,\d{2})\s*\n?\s*([+-]?\d{1,3},\d{2})/;
+  var ROW2 = /(\d{2}\/\d{2}\/\d{4})\s*\n?\s*(\d{1,3}(?:\.\d{3})*,\d{2})/;
+  function parseRow(txt){
+    var m = txt.match(ROW);
+    if(m) return m;
+    m = txt.match(ROW2);
+    if(m) return [m[0], m[1], m[2], '0,00'];
+    return null;
+  }
+
+  function fetchVia(i, url){
+    if(i >= PROXIES.length) return Promise.reject(new Error('todas as rotas falharam'));
+    var ctl = new AbortController();
+    var to = setTimeout(function(){ ctl.abort(); }, 12000);
+    return fetch(PROXIES[i](url), {cache:'no-store', signal:ctl.signal})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function(t){ clearTimeout(to); var m = parseRow(toText(t)); if(!m) throw new Error('sem tabela'); return m; })
+      .catch(function(){ clearTimeout(to); return fetchVia(i+1, url); });
+  }
+
+  function hoje(){
+    var d = new Date();
+    return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+  }
+  function pregaoAnterior(){
+    var d = new Date();
+    do { d.setDate(d.getDate()-1); } while (d.getDay()===0 || d.getDay()===6);
+    return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+  }
+
+  function render(){
+    document.getElementById('cepea-cards').innerHTML = CEPEA.map(function(c){
+      return '<div class="card" id="c-'+c.k+'">'
+           +   '<div class="top"><div class="nome">'+c.ic+' '+c.nome+'</div><div class="tag" id="t-'+c.k+'"></div></div>'
+           +   '<div class="skel" id="s-'+c.k+'">buscando…</div>'
+           +   '<div class="val" id="v-'+c.k+'" style="display:none"></div>'
+           +   '<div class="lin" id="d-'+c.k+'" style="display:none"></div>'
+           +   '<div class="ref" id="r-'+c.k+'"></div>'
+           + '</div>';
+    }).join('');
+  }
+
+  function loadCepea(){
+    cepeaLoaded = true;
+    render();
+    document.getElementById('cepea-status').textContent = 'buscando…';
+    var H = hoje(), P = pregaoAnterior(), done = 0, frescos = 0;
+    CEPEA.forEach(function(c){
+      fetchVia(0, c.url).then(function(m){
+        var data = m[1], valor = m[2], varr = m[3];
+        document.getElementById('s-'+c.k).style.display='none';
+        var v = document.getElementById('v-'+c.k);
+        v.innerHTML = valor + '<span class="un">'+c.un+'</span>';
+        v.style.display='block';
+        var num = parseFloat(varr.replace(',','.'));
+        var cls = num > 0 ? 'up' : (num < 0 ? 'down' : 'flat');
+        var arw = num > 0 ? '▲ +' : (num < 0 ? '▼ ' : '— ');
+        var d = document.getElementById('d-'+c.k);
+        d.className = 'lin ' + cls;
+        d.textContent = arw + varr.replace('+','').replace('-','−') + '%  ·  ' + data;
+        d.style.display='block';
+        var t = document.getElementById('t-'+c.k);
+        if(data === H){ t.className='tag ok'; t.textContent='hoje'; frescos++; }
+        else if(data === P){ t.className='tag ok'; t.textContent='último pregão'; frescos++; }
+        else { t.className='tag old'; t.textContent='⚠ ' + data; }
+        document.getElementById('r-'+c.k).innerHTML = 'Série oficial CEPEA · <a href="'+c.url+'" target="_blank" rel="noopener">ver histórico ↗</a>';
+      }).catch(function(e){
+        document.getElementById('s-'+c.k).style.display='none';
+        var t = document.getElementById('t-'+c.k);
+        t.className='tag err'; t.textContent='falhou';
+        document.getElementById('r-'+c.k).innerHTML = 'Não consegui ler agora ('+e.message+') · <a href="'+c.url+'" target="_blank" rel="noopener">abrir a fonte ↗</a>';
+      }).then(function(){
+        done++;
+        if(done === CEPEA.length){
+          var dt = new Date();
+          document.getElementById('cepea-status').textContent =
+            frescos + '/' + CEPEA.length + ' no último pregão · lido às ' +
+            String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0');
+        }
+      });
+    });
+  }
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); });
   }
@@ -142,7 +245,7 @@
 
   loadAll(false);
   setInterval(function(){ loadAll(false); }, 5*60*1000);
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) loadAll(false); });
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden){ loadAll(false); if(document.getElementById('cepea').classList.contains('active')) loadCepea(); } });
 </script>
 </body>
 </html>

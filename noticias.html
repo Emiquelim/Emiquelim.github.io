@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newsflow Agro — Pré-Pregão</title>
+<title>Newsflow Agro — Notícias</title>
 <style>
   :root{
     --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
@@ -24,7 +24,6 @@
   .brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
   h1{font-size:26px;font-weight:700;margin-top:4px}
   .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
-  .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
   .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
@@ -33,128 +32,136 @@
   .kpi .ref{font-size:11.5px;color:var(--ink-3);margin-top:4px}
   .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--neutral)}
   section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
-  section h2{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  section p{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
-  section p strong{color:var(--ink)}
-  .tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:6px;padding:2px 8px}
-  .tag.alta{background:rgba(26,122,74,.12);color:var(--up)}
-  .tag.baixa{background:rgba(179,55,46,.12);color:var(--down)}
-  .tag.misto{background:var(--chip);color:var(--neutral)}
+  section h2{font-size:16px;font-weight:700;margin-bottom:8px}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--chip);color:var(--accent);vertical-align:middle;margin-left:6px}
+  .tag.alta{color:var(--up)} .tag.baixa{color:var(--down)} .tag.neutro{color:var(--neutral)}
+  p{font-size:14px;color:var(--ink-2);margin-bottom:8px}
+  p strong{color:var(--ink)}
+  ul{margin:4px 0 8px 18px}
+  li{font-size:14px;color:var(--ink-2);margin-bottom:5px}
+  li strong{color:var(--ink)}
   .pend{color:var(--warn-ink);font-weight:600}
-  ul.agenda{list-style:none;margin-top:4px}
-  ul.agenda li{font-size:14.5px;color:var(--ink-2);padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
-  ul.agenda li:last-child{border-bottom:none}
-  ul.agenda .when{font-weight:700;color:var(--ink);min-width:104px;font-variant-numeric:tabular-nums}
   footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
   footer a{color:var(--accent);text-decoration:none}
-  .sources{margin-top:8px;line-height:1.9}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="brand">Newsflow Agro</div>
-    <h1>Pré-Pregão</h1>
-    <div class="meta"><strong>Terça-feira, 11 de agosto de 2026 · 09:05 (São Paulo, BR)</strong> · BGI · SJC · CCM · ICF · <strong>atualização manual</strong></div>
-    <div class="banner">🟢 <strong>D-1 fechado em boi, milho e café arábica</strong> — o CEPEA de segunda saiu durante a madrugada: <strong>boi R$ 347,50 (0,00%)</strong> · <strong>milho R$ 65,63 (+0,94%)</strong> · <strong>café arábica R$ 1.750,23 (+1,05%)</strong>. 🟠 <strong>Soja e conilon de 10/08 ainda não publicados</strong> às 09h. ⚠️ <strong>O corte automático das 7h não publicou hoje</strong> — esta edição é manual; Chicago/CME e café de 10/08, PTAX, CCM, físico/BGI e Crop Progress ficam para o corte das 16h40. 📅 <strong>WASDE amanhã, quarta 12/08</strong> · Export Sales quinta 13/08.</div>
+    <h1>Segunda 10/08 fechada por completo — véspera de WASDE</h1>
+    <div class="meta">Atualizado: <strong>terça-feira, 11/08/2026, 16:45 (São Paulo, BR)</strong> · 🐂 BGI · 🌱 SJC · 🌽 CCM · ☕ ICF · <strong>corte das 7h (retomado)</strong></div>
   </header>
 
   <div class="kpis">
     <div class="kpi">
-      <div class="label">Boi · CEPEA 10/08</div>
-      <div class="value">R$ 347,50/@</div>
-      <div class="delta flat">— 0,00% ✓</div>
-      <div class="ref"><strong>10/08 oficial</strong> · parado há 2 pregões</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Milho · CEPEA 10/08</div>
+      <div class="label">Milho CEPEA — destaque</div>
       <div class="value">R$ 65,63</div>
-      <div class="delta up">▲ +0,94% ✓</div>
-      <div class="ref"><strong>10/08 oficial</strong> · maior alta diária do mês</div>
+      <div class="delta up">▲ +0,94%</div>
+      <div class="ref">10/08 ✓ · maior alta diária de agosto</div>
     </div>
     <div class="kpi">
-      <div class="label">Soja · CEPEA 07/08</div>
-      <div class="value">R$ 145,15</div>
-      <div class="delta up">▲ +0,12% ✓</div>
-      <div class="ref"><strong>07/08 oficial</strong> · <span class="pend">10/08 não publicado</span></div>
+      <div class="label">Boi CEPEA</div>
+      <div class="value">R$ 347,50/@</div>
+      <div class="delta flat">— 0,00%</div>
+      <div class="ref">10/08 ✓ · físico firme: PR foi a 355</div>
     </div>
     <div class="kpi">
-      <div class="label">Café · CEPEA 10/08</div>
+      <div class="label">Soja CEPEA Paranaguá</div>
+      <div class="value">R$ 144,96</div>
+      <div class="delta down">▼ −0,13%</div>
+      <div class="ref">10/08 ✓ · CBOT Nov +3¼¢ (11,79½)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Café CEPEA arábica</div>
       <div class="value">R$ 1.750,23</div>
-      <div class="delta up">▲ +1,05% ✓</div>
-      <div class="ref"><strong>10/08 oficial</strong> · maior nível desde 29/07</div>
+      <div class="delta up">▲ +1,05%</div>
+      <div class="ref">10/08 ✓ · NY devolveu −0,97%</div>
     </div>
     <div class="kpi">
-      <div class="label">Segunda 10/08 · fechado ✓</div>
-      <div class="value">Dólar 5,111 ▲</div>
-      <div class="delta down">Ibov 172.179,93 ▼ −0,19%</div>
-      <div class="ref">5ª queda seguida · Brent +5% &gt; US$ 80 (EUA–Irã)</div>
+      <div class="label">Dólar / PTAX 10/08</div>
+      <div class="value">5,111 / 5,0963</div>
+      <div class="delta up">▲ +0,53% / +0,11%</div>
+      <div class="ref">Brent &gt; US$ 80 (+5%) · Ibov −0,19% (5ª queda)</div>
     </div>
   </div>
 
   <section>
-    <h2>🧭 O que interessa na abertura</h2>
-    <p><strong>O indicador de segunda entregou uma divergência que vale o olho: milho e café subindo com força enquanto o boi ficou parado.</strong> O milho saltou +0,94% (R$ 65,63), a maior alta diária de agosto, e o café arábica ganhou +1,05% (R$ 1.750,23), o nível mais alto desde 29/07. O boi, por outro lado, repetiu exatamente os R$ 347,50 de sexta — <strong>segundo pregão seguido sem variação</strong>.</p>
-    <p><strong>O pano de fundo de ontem foi geopolítico:</strong> a tensão renovada entre EUA e Irã, com dúvidas sobre a reabertura do Estreito de Ormuz, levou o Brent a subir ~5% e superar US$ 80/barril. No Brasil isso segurou PETR4 e limitou a queda do Ibovespa, que ainda assim emendou a <strong>5ª sessão no vermelho: 172.179,93 (−0,19%)</strong>. O <strong>dólar subiu +0,53%, a R$ 5,111</strong> — acima de 5,10, é vento a favor na paridade de exportação de soja, milho e carne, e o petróleo mais caro sustenta o complexo de energia/etanol, suporte indireto ao milho (coerente com a alta do indicador).</p>
-    <p>Semana carregada pela frente: <strong>IPCA hoje</strong>, <strong>WASDE de agosto amanhã</strong> — o USDA confirma ou não o "mega-yield" que o mercado vem vendendo, com CPI americano no mesmo dia — e Export Sales na quinta, que testa as 13 cargas chinesas de soja nos dados oficiais.</p>
+    <h2>⚖️ Balanço do dia (D-1: segunda 10/08)</h2>
+    <p><strong>O dia de segunda foi de físico brasileiro forte contra bolsa americana morna.</strong> No interno, o milho CEPEA saltou +0,94% (maior alta de agosto) e o boi físico renovou máximas regionais (PR R$ 355; MT/RO +R$ 15 vs fim de julho), enquanto soja fez leve realização. No externo, a soja subiu em Chicago puxada pelo óleo (petróleo +5% com tensão EUA–Irã), o milho ficou de lado e o live cattle recuperou +1,62 com oferta apertada. <strong>Tudo isso é aquecimento para o WASDE de amanhã (12/08)</strong> — consenso espera yield de milho de 182,4 bu/a, abaixo da tendência, com o Crop Progress estabilizado em 61% bom/excelente.</p>
   </section>
 
   <section>
-    <h2>🌱 Soja (SJC) <span class="tag alta">China com 13 cargas; WASDE amanhã é o teste</span></h2>
-    <p><strong>O pano de fundo altista segue sendo a China: 13 cargas de soja americana na semana, ~25% do compromisso de 25 mi t (TFM)</strong> — a demanda especulada virou embarque. O <strong>dólar a 5,111 melhora a paridade de exportação na margem</strong>. <span class="pend">O CEPEA de soja de 10/08 é o único dos grãos que ainda não saiu — a série segue com 07/08 (R$ 145,15, +0,12% ✓) no topo às 09h; captura no corte das 16h40, junto com o fechamento de Chicago de segunda.</span> Amanhã tem WASDE (produtividade EUA) e quinta o Export Sales oficializa — ou não — o apetite chinês.</p>
+    <h2>🐂 Boi Gordo (BGI) <span class="tag alta">VIÉS DE ALTA MODERADO</span></h2>
+    <ul>
+      <li><strong>CEPEA parado em R$ 347,50 pelo 2º pregão (10/08 ✓)</strong>, mas o físico não parou: <strong>PR subiu a R$ 355</strong> e o interior encurtou o desconto — MT 340 (+15 vs 29/07), RO 335 (+15), MG 340 (+10), TO 335 (+10). Escalas de 4 a 7 dias (Agrifatto/DBO 10/08 ✓).</li>
+      <li><strong>O spread físico × indicador é a tese do momento</strong>: pontuais de R$ 360–370 em SP/PR (06/08) ainda não apareceram no CEPEA — se o físico sustentar, o indicador tende a subir.</li>
+      <li><strong>CME deu suporte externo: live cattle Out fechou US$ 226,90 (+1,62) com "tight ready numbers"</strong>; hogs +1,45. Feeder devolveu só 0,65 da alta de 3,65 de sexta (Brownfield ✓).</li>
+      <li><span class="pend">BGI B3 sem fonte aberta desde 06/08 (última: Ago/26 348,75)</span> — atenção ao vencimento Ago/26 com o indicador de liquidação parado abaixo da curva.</li>
+    </ul>
   </section>
 
   <section>
-    <h2>🌽 Milho (CCM) <span class="tag alta">Maior alta diária do mês; petróleo dá suporte via etanol</span></h2>
-    <p><strong>O CEPEA de segunda subiu +0,94% (R$ 65,63 ✓) — a maior alta diária de agosto e a segunda seguida</strong>, acumulando +0,58% no mês. O salto do petróleo (+5%, Brent acima de US$ 80) dá suporte direto ao etanol de milho e ajuda a explicar o movimento. Em Chicago o cabo de guerra continua: clima favorável (chuvas acima do normal por 2 semanas no Corn Belt) contra condição em queda (61% B/E, −2 p.p. na leitura de 03/08) e demanda firme (México 286 mil t na sexta). <span class="pend">O Crop Progress divulgado ontem à noite e o fechamento de Chicago de segunda ainda não foram capturados → 16h40.</span> <strong>WASDE amanhã é o evento da semana.</strong> <span class="pend">CCM B3 segue sem fonte aberta desde 05/08 (7º dia).</span></p>
+    <h2>🌱 Soja (SJC) <span class="tag neutro">NEUTRO — WASDE DECIDE</span></h2>
+    <ul>
+      <li><strong>CEPEA Paranaguá fez leve realização: R$ 144,96 (−0,13%, 10/08 ✓)</strong> após três altas seguidas; mês ainda positivo (+0,03%).</li>
+      <li><strong>Chicago subiu com energia: Nov fechou US$ 11,79½ (+3¼¢), com óleo de soja +1,29¢</strong> no rastro do petróleo (Brent &gt; US$ 80). Farelo cedeu 3,40 — trade de óleo, não de demanda (TFM ✓).</li>
+      <li><strong>Sinal misto na China</strong>: as 13 cargas da semana passada (~25% do compromisso de 25 mi t) ainda não viraram embarque — inspeções de segunda fracas, 14,7 mi bu (−18% a/a). Teste oficial no Export Sales de quinta.</li>
+      <li>Crop Progress: <strong>soja cedeu a 62% bom/excelente (−1 p.p.)</strong>, 74% formando vagens — agosto é o mês da soja americana, e o WASDE de amanhã calibra a régua.</li>
+    </ul>
   </section>
 
   <section>
-    <h2>🐂 Boi Gordo (BGI) <span class="tag misto">Indicador travado × físico quente: o spread é o ponto do dia</span></h2>
-    <p><strong>O indicador repetiu 347,50 pela segunda sessão seguida (0,00%)</strong>, acumulando apenas +0,27% no mês. Do outro lado, a última leitura de físico disponível — quinta 06/08 — mostrava <strong>SP a R$ 355/@ a prazo e negócios pontuais de R$ 360–370 em SP e PR, com escalas de 5 dias úteis</strong>. Ou seja: o CEPEA não capturou esses pontuais e o gap segue aberto. <span class="pend">Ressalva importante: o físico está desatualizado desde quinta — sem leitura nova do DBO/Agrifatto na sexta nem na segunda, não dá para afirmar que o prêmio continua nesse tamanho. A leitura nova do DBO noturno e a CME de segunda entram no corte das 16h40.</span> Dólar mais alto ajuda o boi-China na margem.</p>
+    <h2>🌽 Milho (CCM) <span class="tag alta">ALTISTA NO FÍSICO DOMÉSTICO</span></h2>
+    <ul>
+      <li><strong>CEPEA Campinas disparou +0,94% a R$ 65,63 (10/08 ✓) — maior alta diária de agosto</strong>; mês virou para +0,58%. Vendedor retraído e etanol com Brent acima de US$ 80 dão sustentação.</li>
+      <li><strong>Chicago de lado na véspera do WASDE: Dez US$ 4,61¾ (−¼¢)</strong>. Demanda externa segue o ponto forte: <strong>inspeções de 68,5 mi bu, acumulado +25% a/a</strong> (TFM ✓).</li>
+      <li><strong>Crop Progress estabilizou o milho em 61% bom/excelente</strong> (após 2 quedas), 61% em grão pastoso — amanhã o WASDE arbitra: consenso de yield 182,4 bu/a, ABAIXO da tendência, com produção ~16 bi bushels.</li>
+      <li><span class="pend">CCM B3 no 7º dia sem fonte aberta (última: Set 68,30, 05/08)</span> — com CEPEA subindo quase 1% ao dia, o ajuste deve estar rodando acima disso; cuidado com referências velhas.</li>
+    </ul>
   </section>
 
   <section>
-    <h2>☕ Café (ICF) <span class="tag alta">Indicador no maior nível desde 29/07</span></h2>
-    <p><strong>O CEPEA arábica de segunda subiu +1,05% (R$ 1.750,23 ✓), o maior nível desde 29/07</strong> — confirmando que o mercado físico acompanhou a disparada de sexta em NY (arábica +4,32%, 335,55 ¢/lb; ICF Set +2,68%, US$ 402,00; ICF Dez/26 US$ 384,00, +2,94%). <span class="pend">Os fechamentos de segunda em NY/Londres/B3 e o conilon de 10/08 ainda não foram capturados → 16h40.</span> Agosto segue mês crítico de geada nas cafeeiras — sem evento confirmado até aqui; o prêmio de risco climático permanece embutido no arábica.</p>
+    <h2>☕ Café (ICF) <span class="tag neutro">MISTO — INTERNO FIRME, NY REALIZOU</span></h2>
+    <ul>
+      <li><strong>CEPEA arábica subiu +1,05% a R$ 1.750,23 (10/08 ✓), maior nível desde 29/07</strong>; conilon +0,30% (R$ 1.092,38). Câmbio a 5,11 ajudou o interno.</li>
+      <li><strong>NY devolveu parte do rali de sexta: Set −0,97% (332,30 ¢/lb)</strong>, Dez −0,63%. Robusta na contramão, +0,50% (US$ 3.806/t).</li>
+      <li><strong>ICF B3 seguiu firme: Set US$ 404,05 (+0,36%)</strong>, acima dos 400 pela 2ª sessão; Dez estável em 384,00 (cotacaodocafe ✓).</li>
+      <li>Agosto segue sendo o mês crítico de geada nas regiões cafeeiras — <strong>sem evento confirmado até este corte</strong> (ver Clima).</li>
+    </ul>
   </section>
 
   <section>
-    <h2>💵 Câmbio &amp; Macro <span class="tag baixa">5ª queda do Ibov; dólar 5,111; Brent +5% com EUA–Irã</span></h2>
-    <p><strong>Fechamento de segunda ✓: Ibov 172.179,93 (−0,19%), 5ª queda seguida; dólar R$ 5,111 (+0,53%), máxima intradia ~5,116.</strong> O motor foi o petróleo: <strong>Brent +5%, acima de US$ 80, com a tensão EUA–Irã e dúvidas sobre Ormuz</strong> — PETR4 limitou as perdas; educação e locadoras pesaram; Wall Street devolveu recordes (Dow −0,11%, S&amp;P −0,06%, Nasdaq −0,32%). <strong>Hoje sai o IPCA de julho</strong>, e amanhã o CPI americano — inflação com petróleo a US$ 80 complica a aposta de Fed cortando em setembro. <span class="pend">PTAX de 10/08 e de 07/08 seguem pendentes → 16h40.</span> Selic 14,00%.</p>
+    <h2>💵 Macro</h2>
+    <ul>
+      <li><strong>Segunda fechada ✓: Ibov 172.179,93 (−0,19%, 5ª queda seguida); dólar R$ 5,111 (+0,53%); PTAX 5,0963 (+0,11%)</strong> — PTAX de sexta também fechada: 5,0908 (recon.).</li>
+      <li><strong>Brent saltou ~5% e superou US$ 80 (US$ 82,15 no fechamento de Chicago)</strong> com a tensão EUA–Irã e dúvidas sobre o Estreito de Ormuz — pressiona inflação global, sustenta PETR4/etanol e é pano de fundo altista para milho (etanol) e óleo de soja.</li>
+      <li>Semana de inflação: <strong>IPCA de julho saiu hoje (leitura no corte das 19h); CPI dos EUA amanhã, junto com o WASDE</strong> — combinação que pode mexer com dólar e grãos no mesmo dia.</li>
+      <li>Selic 14,00% (Copom 05/08); Fed 3,50–3,75% com payroll fraco reforçando corte em setembro — petróleo acima de 80 complica esse call.</li>
+    </ul>
   </section>
 
   <section>
-    <h2>🌦️ Clima — regiões produtoras</h2>
-    <p><strong>EUA — Corn Belt:</strong> a última leitura disponível (TFM, sexta) indicava chuvas acima do normal e temperaturas normais a abaixo do normal por DUAS semanas — clima vendedor para grãos; o contraponto é a condição do milho em queda há duas semanas. <span class="pend">O Crop Progress divulgado ontem à noite arbitra esse cabo de guerra e ainda não foi capturado → 16h40</span>, na véspera do WASDE.</p>
-    <p><strong>Brasil:</strong> seco típico no Centro-Oeste; Sul e cinturão do café em mês crítico de geada — sem evento confirmado nesta rodada; o prêmio de risco climático segue embutido no arábica.</p>
+    <h2>🌦️ Clima</h2>
+    <ul>
+      <li><strong>Corn Belt: "ratings steady to lower" após semana de clima irregular</strong> — milho estável (61%), soja −1 p.p. (62%), spring wheat −4 p.p. A virada úmida de 2 semanas (TFM 07/08) segue sendo o fator baixista de fundo para Chicago.</li>
+      <li><strong>Brasil: sem evento de geada confirmado nas regiões cafeeiras (Sul de Minas, Cerrado, Mogiana) ou no Sul até este corte</strong> — agosto segue como mês crítico; monitoramento diário mantido. Centro-Oeste segue seco, favorecendo colheita e escoamento da safrinha.</li>
+    </ul>
   </section>
 
   <section>
     <h2>📅 Agenda</h2>
-    <ul class="agenda">
-      <li><span class="when">Hoje · dia</span><span><strong>IPCA de julho (IBGE)</strong> — inflação brasileira na véspera do CPI americano</span></li>
-      <li><span class="when">Hoje · 16h40</span><span><strong>Corte das 16h40 (pesado):</strong> CEPEA soja e conilon de 10/08, Chicago/CME de 10/08 (TFM/Brownfield), café de 10/08, Crop Progress, PTAX ×2, CCM, físico/BGI (DBO)</span></li>
-      <li><span class="when">Qua 12/08</span><span><strong>USDA WASDE de agosto</strong> — foco em produtividade/área do milho e soja EUA; CPI dos EUA no mesmo dia</span></li>
-      <li><span class="when">Qui 13/08</span><span>Export Sales — teste das 13 cargas chinesas de soja nos dados oficiais</span></li>
+    <ul>
+      <li><strong>Hoje (ter 11/08):</strong> IPCA de julho (IBGE) — repercussão no corte das 19h.</li>
+      <li><strong>Amanhã (qua 12/08): WASDE agosto (13h BRT) — o evento da semana</strong> (consenso: yield milho 182,4 bu/a) + CPI dos EUA.</li>
+      <li><strong>Quinta 13/08:</strong> USDA Export Sales (9h30 BRT) — teste das 13 cargas chinesas de soja.</li>
+      <li>Segunda 17/08: Crop Progress semanal.</li>
     </ul>
   </section>
 
   <footer>
-    <div><strong>Fontes desta edição:</strong></div>
-    <div class="sources">
-      <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo/boi-gordo-indicador-esalq-bmf">CEPEA boi — série 10/08 ✓</a> ·
-      <a href="https://www.noticiasagricolas.com.br/cotacoes/milho/indicador-cepea-esalq-milho">CEPEA milho — série 10/08 ✓</a> ·
-      <a href="https://www.noticiasagricolas.com.br/cotacoes/soja/soja-indicador-cepea-esalq-porto-paranagua">CEPEA soja — série (10/08 pendente)</a> ·
-      <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-arabica">CEPEA café arábica — série 10/08 ✓</a> ·
-      <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-conillon">CEPEA conilon — série (10/08 pendente)</a> ·
-      <a href="https://www.suno.com.br/noticias/ibovespa-hoje-10-agosto-2026-petr4-oriente-medio-mt/">Suno — fechamento Ibov/dólar 10/08 + Brent/EUA–Irã</a> ·
-      <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-8-7-2026/">TFM — CBOT 07/08 + China 13 cargas</a> ·
-      <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-august-7-2026/">Brownfield — CME 07/08</a> ·
-      <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café — futuros 07/08</a> ·
-      <a href="https://portaldbo.com.br/boi-gordo-nas-pracas-de-sp-e-pr-ja-ha-negocios-pontuais-entre-r-360-e-r-370/">Portal DBO/Agrifatto — físico 06/08</a>
-    </div>
-    <p style="margin-top:10px"><strong>Incidente: o corte automático das 7h de 11/08 não publicou</strong> — esta edição foi feita manualmente às 09h05. Pendências para o corte das 16h40: CEPEA soja e conilon de 10/08; Chicago/CME de 10/08; café de 10/08; Crop Progress; PTAX de 10/08 e 07/08; CCM; físico/BGI. Material informativo para a mesa de operações — não constitui recomendação de investimento.</p>
+    Fontes deste corte: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA boi</a> · <a href="https://cepea.org.br/br/indicador/milho.aspx">CEPEA milho</a> · <a href="https://cepea.org.br/br/indicador/soja.aspx">CEPEA soja</a> · <a href="https://cepea.org.br/br/indicador/cafe.aspx">CEPEA café</a> · <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-08-10-2026/">Total Farm Marketing (CBOT 10/08)</a> · <a href="https://www.brownfieldagnews.com/market-news/live-cattle-futures-higher-to-start-the-week-2/">Brownfield (CME 10/08)</a> · <a href="https://www.brownfieldagnews.com/news/61-of-u-s-corn-62-of-soybeans-good-to-excellent/">Brownfield (Crop Progress)</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café (10/08)</a> · <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-10-8-26/">Portal DBO/Agrifatto (físico 10/08)</a> · <a href="https://trademap.com.br/agencia/mercados/boletim-cambial-10-08-euro-e-dolar-ptax">TradeMap (PTAX)</a> · <a href="https://www.suno.com.br/noticias/ibovespa-hoje-10-agosto-2026-petr4-oriente-medio-mt/">Suno (Ibov/dólar/Brent 10/08)</a>
+    <p style="margin-top:10px">Corte das 7h retomado após interrupções (publicado 16h45); intradiário de 11/08 nos cortes 16h40/19h. Vieses são leitura editorial das fontes citadas. Material informativo — não constitui recomendação de investimento.</p>
   </footer>
 </div>
 </body>

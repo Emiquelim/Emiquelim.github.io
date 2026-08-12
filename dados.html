@@ -1,220 +1,295 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newsflow Agro — Painel de Dados</title>
-<style>
-  :root{
-    --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
-    --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --neutral:#5c594f;
-    --accent:#2c5f8a; --chip:#eef2f6; --warn-bg:#fff4e0; --warn-ink:#8a5a00; --warn-line:#e8c887;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#191817; --surface:#232220; --ink:#eceae4; --ink-2:#b0ac9f; --ink-3:#807c6f;
-      --line:#38362f; --up:#4cc98a; --down:#e5766c; --neutral:#b0ac9f;
-      --accent:#7fb0da; --chip:#2a3138; --warn-bg:#3a2f18; --warn-ink:#e8c887; --warn-line:#5c4a24;
-    }
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;padding:28px 20px 40px}
-  .wrap{max-width:860px;margin:0 auto}
-  header{margin-bottom:22px}
-  .brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
-  h1{font-size:26px;font-weight:700;margin-top:4px}
-  .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
-  .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
-  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
-  .kpi .value{font-size:22px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
-  .kpi .delta{font-size:13px;font-weight:600;margin-top:2px}
-  .kpi .ref{font-size:11.5px;color:var(--ink-3);margin-top:4px}
-  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--neutral)}
-  section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
-  section h2{font-size:16px;font-weight:700;margin-bottom:6px}
-  section .sub{font-size:12.5px;color:var(--ink-3);margin-bottom:8px}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
-  th{text-align:left;color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;padding:6px 8px;border-bottom:1px solid var(--line)}
-  td{padding:7px 8px;border-bottom:1px solid var(--line);color:var(--ink-2);font-variant-numeric:tabular-nums}
-  td:first-child{color:var(--ink);font-weight:600}
-  tr:last-child td{border-bottom:none}
-  .pend{color:var(--warn-ink);font-weight:600}
-  footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
-  footer a{color:var(--accent);text-decoration:none}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Agro - ATV Trading Desk</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e27; color: #e1e8ed; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #1a2747, #2d3a5a); padding: 25px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #00d4ff; }
+        h1 { font-size: 28px; color: #00d4ff; margin-bottom: 5px; }
+        .timestamp { color: #8899bb; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #131829; border-radius: 8px; overflow: hidden; border: 1px solid #1e2a3f; }
+        th { background: #1e2a3f; padding: 15px; text-align: left; font-weight: 600; color: #00d4ff; border-bottom: 1px solid #2a3a50; font-size: 13px; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid #1e2a3f; font-size: 14px; }
+        tr:last-child td { border-bottom: none; }
+        .positive { color: #00ff41; font-weight: 600; }
+        .negative { color: #ff3333; font-weight: 600; }
+        .neutral { color: #c5d3e0; }
+        .section-title { font-size: 16px; color: #00d4ff; margin-bottom: 15px; margin-top: 25px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .emoji { font-size: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .card { background: #131829; padding: 20px; border-radius: 8px; border: 1px solid #1e2a3f; border-left: 3px solid #00d4ff; }
+        .card-label { font-size: 12px; color: #667a8f; text-transform: uppercase; margin-bottom: 8px; }
+        .card-value { font-size: 22px; font-weight: bold; color: #00d4ff; }
+        .card-change { font-size: 12px; margin-top: 8px; }
+    </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">Newsflow Agro</div>
-    <h1>Painel de Dados</h1>
-    <div class="meta">Atualizado: <strong>quarta-feira, 12/08/2026, 07:25 (São Paulo, BR)</strong> · BGI · SJC · CCM · ICF · <strong>corte das 7h (pré-pregão) ✓ no horário</strong></div>
-    <div class="banner">✅ <strong>TERÇA 11/08 FECHADA: CEPEA ×5 ✓ · Chicago/CME ✓ (Brownfield) · físico boi ✓ (Agrifatto: PR R$ 360, altas em 7 praças)</strong> — boi CEPEA parado a 347,40 com físico disparando = spread é a pauta do BGI. Chicago caiu na véspera do relatório: soja Set −10¼¢ com chuvas no Corn Belt. 📅 <strong>HOJE, 13h BRT: WASDE de agosto (consenso yield milho 182,4 bu/a) + CPI dos EUA (9h30)</strong>. Pendências: café NY/B3 de 11/08 (cotacaodocafe preso em 10/08), <span class="pend">CCM B3 no 9º dia sem fonte</span>, BGI futuros desde 06/08, milho Dez/soja Nov de 11/08 (TFM fora do ar — 404 ×2).</div>
-  </header>
+    <div class="container">
+        <header>
+            <h1>📊 DADOS AGRO - MESA DE OPERAÇÕES</h1>
+            <p class="timestamp">Terça-feira, 16 de junho de 2026 · Última atualização: 08:15 (São Paulo)</p>
+        </header>
 
-  <div class="kpis">
-    <div class="kpi">
-      <div class="label">Boi — CEPEA 11/08 ✓</div>
-      <div class="value">R$ 347,40/@</div>
-      <div class="delta flat">▼ −0,03% · parado 3 pregões</div>
-      <div class="ref">físico: PR 360 · SP 355 — spread aberto</div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-label">🐂 BGI (Julho/26) - B3</div>
+                <div class="card-value">R$ 341,50</div>
+                <div class="card-change"><span class="negative">↓ R$ 9,80 (-2,8%)</span> vs junho</div>
+            </div>
+            <div class="card">
+                <div class="card-label">🌱 SJC (Julho/26) - CBOT</div>
+                <div class="card-value">US$ 11,30/bu</div>
+                <div class="card-change"><span class="positive">↑ +10¢ (+0,89%)</span> vs sexta</div>
+            </div>
+            <div class="card">
+                <div class="card-label">🌽 CCM (Agosto/26) - B3</div>
+                <div class="card-value">R$ 61,12</div>
+                <div class="card-change"><span class="neutral">→ Estável</span></div>
+            </div>
+            <div class="card">
+                <div class="card-label">💵 Dólar/Real (PTAX)</div>
+                <div class="card-value">R$ 5,0615</div>
+                <div class="card-change"><span class="positive">↓ -0,14% vs segunda</span></div>
+            </div>
+        </div>
+
+        <div class="section-title"><span class="emoji">🐂</span> FUTUROS BOI GORDO - B3</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Vencimento</th>
+                    <th>Preço (R$/@)</th>
+                    <th>Variação (%)</th>
+                    <th>Referência Física</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Junho/26</td>
+                    <td>R$ 351,65</td>
+                    <td class="positive">+2,0%</td>
+                    <td>R$ 353,50 (à vista)</td>
+                    <td>Ativo</td>
+                </tr>
+                <tr>
+                    <td>Julho/26</td>
+                    <td>R$ 341,50</td>
+                    <td class="negative">-1,5%</td>
+                    <td>R$ 357,65 (prazo)</td>
+                    <td><span class="positive">Maior volume</span></td>
+                </tr>
+                <tr>
+                    <td>Agosto/26</td>
+                    <td>n/d</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>Observar</td>
+                </tr>
+                <tr>
+                    <td>Outubro/26</td>
+                    <td>n/d</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>Potencial rali</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title"><span class="emoji">🌱</span> FUTUROS SOJA - CBOT (Chicago)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Contrato</th>
+                    <th>Preço (US$/bu)</th>
+                    <th>Variação</th>
+                    <th>52w Range</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Julho/26</td>
+                    <td>US$ 11,30</td>
+                    <td class="positive">+10¢ vs sex</td>
+                    <td>10,70 - 12,50</td>
+                    <td>Sustentação chinesa</td>
+                </tr>
+                <tr>
+                    <td>Novembro/26</td>
+                    <td>US$ 11,74</td>
+                    <td class="positive">+3¢</td>
+                    <td>10,80 - 12,75</td>
+                    <td>Safra nova</td>
+                </tr>
+                <tr>
+                    <td>Safra Brasil</td>
+                    <td colspan="4">186 mi t (USDA projeção). Estoques EUA 8,44 mi t vs 10,7 mi t ano passado.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title"><span class="emoji">🌽</span> FUTUROS MILHO - CBOT (Chicago) & B3</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Contrato</th>
+                    <th>Preço</th>
+                    <th>Variação</th>
+                    <th>Status</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chicago Julho/26</td>
+                    <td>US$ 4,19/bu</td>
+                    <td class="negative">-0,11%</td>
+                    <td>Pressão global</td>
+                    <td>Estoques mundiais elevados</td>
+                </tr>
+                <tr>
+                    <td>Chicago Setembro/26</td>
+                    <td>US$ 4,27¾</td>
+                    <td class="positive">+0,05%</td>
+                    <td>Ligeira sustentação</td>
+                    <td>Monitorar safrinha Brasil</td>
+                </tr>
+                <tr>
+                    <td>B3 Agosto/26</td>
+                    <td>R$ 61,12/saca</td>
+                    <td class="neutral">0,0%</td>
+                    <td>Estável</td>
+                    <td>Colheita verão brasileira</td>
+                </tr>
+                <tr>
+                    <td>Safra EUA 2026/27</td>
+                    <td colspan="4">406,29 mi t (WASDE). Produção mundial 1,300 bi t. Pressão estrutural persiste.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title"><span class="emoji">📈</span> INDICADORES CEPEA/ESALQ</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Commodity</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Variação (d/d)</th>
+                    <th>Contexto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Boi Gordo</td>
+                    <td>R$ 353,50/@</td>
+                    <td>15/06</td>
+                    <td class="positive">+0,5%</td>
+                    <td>À vista. Exportações em alta.</td>
+                </tr>
+                <tr>
+                    <td>Boi (prazo)</td>
+                    <td>R$ 357,65/@</td>
+                    <td>15/06</td>
+                    <td class="positive">+0,6%</td>
+                    <td>Estrutura de contango.</td>
+                </tr>
+                <tr>
+                    <td>Soja</td>
+                    <td>R$ 128,74/saca (CO-RG)</td>
+                    <td>12/06</td>
+                    <td>Variável por região</td>
+                    <td>CO-RG: R$ 128,74 | SO-MG: R$ 104,74</td>
+                </tr>
+                <tr>
+                    <td>Milho</td>
+                    <td>R$ 61,12/saca</td>
+                    <td>11/06</td>
+                    <td class="neutral">0,0%</td>
+                    <td>Pressão da colheita verão.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title"><span class="emoji">💱</span> MACRO E CÂMBIO</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ativo</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Variação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dólar/Real (PTAX)</td>
+                    <td>R$ 5,0615</td>
+                    <td>15/06 (fech)</td>
+                    <td class="neutral">-0,14%</td>
+                </tr>
+                <tr>
+                    <td>Dólar (intrad. 16/06)</td>
+                    <td>~R$ 5,10</td>
+                    <td>16/06</td>
+                    <td class="negative">Flertando máximas</td>
+                </tr>
+                <tr>
+                    <td>Ibovespa</td>
+                    <td>~172.500 pts</td>
+                    <td>16/06</td>
+                    <td class="negative">Pressão fiscal</td>
+                </tr>
+                <tr>
+                    <td>Petróleo Brent</td>
+                    <td>US$ 83,49/bbl</td>
+                    <td>16/06</td>
+                    <td class="negative">↓ Pressão oferta</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title"><span class="emoji">📅</span> AGENDA PRÓXIMOS DIAS</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Evento</th>
+                    <th>Impacto Esperado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Quarta 17/06</strong></td>
+                    <td>Copom (Brasil) + FOMC (EUA) — decisões de juros</td>
+                    <td class="positive">Alto — "superquarta"</td>
+                </tr>
+                <tr>
+                    <td><strong>Quinta 18/06</strong></td>
+                    <td>USDA Export Sales semanais</td>
+                    <td>Médio-alto — soja/milho</td>
+                </tr>
+                <tr>
+                    <td><strong>Sábado 19/06</strong></td>
+                    <td>USDA Crop Progress (EUA)</td>
+                    <td>Médio — condições Corn Belt</td>
+                </tr>
+                <tr>
+                    <td><strong>Próximo WASDE</strong></td>
+                    <td>Julho 2026 (data TBD)</td>
+                    <td>Alto — revisão global estoques</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 40px; padding: 20px; background: #131829; border-radius: 8px; border-left: 3px solid #667a8f; font-size: 12px; color: #667a8f;">
+            <strong>Disclaimer:</strong> Dados consolidados de fontes públicas (Cepea/Esalq, CBOT, B3, USDA). Valores podem ter atraso de 15-30 min nas cotações de futuros. Últimas 72h priorizadas. Para operações real-time, consultar terminais especializados (Bloomberg, CMA, etc).
+        </div>
     </div>
-    <div class="kpi">
-      <div class="label">Milho — CEPEA 11/08 ✓</div>
-      <div class="value">R$ 65,65</div>
-      <div class="delta up">▲ +0,03%</div>
-      <div class="ref">mês +0,61% · segurou a alta de segunda</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Soja / Café — CEPEA 11/08 ✓</div>
-      <div class="value">144,89 · 1.762,44</div>
-      <div class="delta up">−0,05% · +0,70%</div>
-      <div class="ref">arábica no maior nível desde 29/07</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Chicago 11/08 ✓ (Set)</div>
-      <div class="value">Soja 11,51½</div>
-      <div class="delta down">▼ −10¼¢ · chuvas pré-WASDE</div>
-      <div class="ref">milho 4,36¾ (−1½¢) · trigo 6,30¼ (−10¼¢)</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Hoje 13h BRT</div>
-      <div class="value">WASDE</div>
-      <div class="delta flat">+ CPI EUA 9h30</div>
-      <div class="ref">consenso: yield milho 182,4 bu/a · dólar 5,161 ✓</div>
-    </div>
-  </div>
-
-  <section>
-    <h2>📊 Indicadores CEPEA/Esalq</h2>
-    <div class="sub"><strong>Terça 11/08 fechada nos cinco ✓</strong> (páginas oficiais conferidas às 7h10 de 12/08, todas com linha de 11/08 no topo — o atraso da véspera se resolveu na madrugada, como no padrão). Destaques: <strong>boi parado a R$ 347,40 pelo 3º pregão</strong> enquanto o físico sobe; <strong>arábica +0,70%, maior nível desde 29/07</strong>; milho segurou a alta de segunda.</div>
-    <table>
-      <thead><tr><th>Indicador</th><th>11/08 (ter) ✓</th><th>10/08 (seg)</th><th>07/08 (sex)</th></tr></thead>
-      <tbody>
-        <tr><td>Boi gordo (SP)</td><td><strong>R$ 347,40</strong> (▼ −0,03%) · mês +0,25% · US$ 67,26</td><td>347,50 (0,00%)</td><td>347,50 (−0,23%)</td></tr>
-        <tr><td>Milho (Campinas)</td><td><strong>R$ 65,65</strong> (▲ +0,03%) · mês +0,61% · US$ 12,71</td><td>65,63 (+0,94%)</td><td>65,02 (+0,28%)</td></tr>
-        <tr><td>Soja (Paranaguá)</td><td><strong>R$ 144,89</strong> (▼ −0,05%) · mês −0,01% · US$ 28,05</td><td>144,96 (−0,13%)</td><td>145,15 (+0,12%)</td></tr>
-        <tr><td>Café arábica (tipo 6)</td><td><strong>R$ 1.762,44</strong> (▲ +0,70%) · US$ 341,23 · maior desde 29/07</td><td>1.750,23 (+1,05%)</td><td>1.732,12 (+0,24%)</td></tr>
-        <tr><td>Café conilon</td><td><strong>R$ 1.086,88</strong> (▼ −0,50%) · US$ 210,43</td><td>1.092,38 (+0,30%)</td><td>1.089,15 (−0,12%)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>🐂 Boi gordo — físico por praça (11/08, Agrifatto/DBO ✓)</h2>
-    <div class="sub"><strong>Agrifatto apurou ALTAS EM 7 PRAÇAS (BA, GO, PA, PR, RJ, SC e TO) na terça</strong> — PR foi a R$ 360 (+5), SP a 355 (+5) com escala esticando para 7 dias. <strong>Com o CEPEA parado a 347,40, o spread físico × indicador segue abrindo</strong> — é o ponto de atenção do BGI na abertura. Scot (boi-China, a prazo): PR 362,00 · SP 352,00. <span class="pend">BGI B3 sem fonte desde 06/08 (última: Ago/26 348,75).</span></div>
-    <table>
-      <thead><tr><th>Praça</th><th>Boi 11/08 (R$/@)</th><th>vs 10/08</th><th>Escala de abate</th></tr></thead>
-      <tbody>
-        <tr><td>Paraná</td><td><strong>360,00</strong></td><td class="up">▲ +5</td><td>5 dias</td></tr>
-        <tr><td>São Paulo</td><td><strong>355,00</strong></td><td class="up">▲ +5</td><td>7 dias</td></tr>
-        <tr><td>Mato Grosso do Sul</td><td><strong>345,00</strong></td><td class="flat">=</td><td>6 dias</td></tr>
-        <tr><td>Pará</td><td><strong>345,00</strong></td><td class="up">▲ +5</td><td>4 dias</td></tr>
-        <tr><td>Minas Gerais</td><td><strong>340,00</strong></td><td class="flat">=</td><td>6 dias</td></tr>
-        <tr><td>Mato Grosso</td><td><strong>340,00</strong></td><td class="flat">=</td><td>7 dias</td></tr>
-        <tr><td>Goiás</td><td><strong>340,00</strong></td><td class="up">▲ +5</td><td>5 dias</td></tr>
-        <tr><td>Tocantins</td><td><strong>340,00</strong></td><td class="up">▲ +5</td><td>5 dias</td></tr>
-        <tr><td>Rondônia</td><td><strong>335,00</strong></td><td class="flat">=</td><td>7 dias</td></tr>
-        <tr><td>Maranhão</td><td><strong>335,00</strong></td><td class="flat">=</td><td>7 dias</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>🌱 Grãos — Chicago (CBOT), fechamento 11/08 ✓ (Brownfield)</h2>
-    <div class="sub"><strong>Terça foi de realização pré-WASDE: soja −10¼¢ com "chuvas contínuas" no Corn Belt; trigo −10¼¢; milho segurou melhor (−1½¢).</strong> <span class="pend">TFM de 11/08 fora do ar (404 em 2 tentativas)</span> → Dez de milho e Nov de soja sem fechamento confirmado; contratos Set via Brownfield ✓. <strong>HOJE 13h: WASDE</strong> — consenso yield milho 182,4 bu/a (abaixo da tendência), produção ~16 bi bu.</div>
-    <table>
-      <thead><tr><th>Contrato</th><th>Fech. 11/08 ✓</th><th>Fech. 10/08 ✓</th><th>Fech. 07/08 ✓</th></tr></thead>
-      <tbody>
-        <tr><td>Milho Set/26</td><td><strong>US$ 4,36¾</strong> (▼ −1½¢)</td><td>4,38½ (−¾¢)</td><td>4,39 (=)</td></tr>
-        <tr><td>Milho Dez/26</td><td class="pend">n/d (TFM 404)</td><td>4,61¾ (−¼¢)</td><td>4,62 (=)</td></tr>
-        <tr><td>Soja Set/26</td><td><strong>US$ 11,51½</strong> (▼ −10¼¢)</td><td>11,61¾ (+2¾¢)</td><td>11,59 (−1¢)</td></tr>
-        <tr><td>Soja Nov/26</td><td class="pend">n/d (TFM 404)</td><td>11,79½ (+3¼¢)</td><td>11,76¼ (−1½¢)</td></tr>
-        <tr><td>Farelo Set/26</td><td><strong>US$ 305,00</strong> (▼ −0,50)</td><td>305,50 (−3,40)</td><td>308,90 (−2,70)</td></tr>
-        <tr><td>Óleo de soja Set/26</td><td><strong>68,57 ¢/lb</strong> (▼ −0,96¢)</td><td>69,53 (+1,29¢)</td><td>68,24 (+0,50¢)</td></tr>
-        <tr><td>Trigo Chicago Set/26</td><td><strong>US$ 6,30¼</strong> (▼ −10¼¢)</td><td>6,40½ (+¾¢)</td><td>6,39¾ (+8½¢)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>🐄 Pecuária — CME, fechamento 11/08 ✓ (Brownfield)</h2>
-    <div class="sub"><strong>Terça mista: live cattle devolveu parte da alta de segunda (−0,57); feeder subiu; hogs cederam.</strong> Suporte de fundo ("tight ready numbers") segue no mercado à vista americano.</div>
-    <table>
-      <thead><tr><th>Contrato</th><th>Fech. 11/08 ✓</th><th>Fech. 10/08 ✓</th><th>Fech. 07/08 ✓</th></tr></thead>
-      <tbody>
-        <tr><td>Live cattle Out/26</td><td><strong>US$ 226,32</strong> (▼ −0,57)</td><td>226,90 (+1,62)</td><td>225,27 (+0,35)</td></tr>
-        <tr><td>Feeder cattle Set/26</td><td><strong>US$ 345,25</strong> (▲ +0,67)</td><td>344,57 (−0,65)</td><td>345,22 (+3,65)</td></tr>
-        <tr><td>Lean hogs Out/26</td><td><strong>US$ 83,32</strong> (▼ −0,35)</td><td>83,67 (+1,45)</td><td>82,22 (+0,50)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>☕ Café — futuros</h2>
-    <div class="sub"><span class="pend">NY/B3 de terça 11/08 seguem pendentes: cotacaodocafe ainda exibia 10/08 às 7h15 desta quarta (3ª checagem em dias seguidos)</span> — fica para o corte das 16h40. No interno, o CEPEA arábica subiu +0,70% (R$ 1.762,44 ✓), descolado da queda de NY na segunda.</div>
-    <table>
-      <thead><tr><th>Contrato</th><th>Fech. 11/08</th><th>Fech. 10/08 ✓</th><th>Fech. 07/08 ✓</th></tr></thead>
-      <tbody>
-        <tr><td>Arábica NY Set/26</td><td class="pend">→ corte 16h40</td><td><strong>332,30 ¢/lb</strong> (▼ −0,97%)</td><td>335,55 (+4,32%)</td></tr>
-        <tr><td>Arábica NY Dez/26</td><td class="pend">n/d</td><td><strong>313,90 ¢/lb</strong> (▼ −0,63%)</td><td>315,90 (+3,20%)</td></tr>
-        <tr><td>Robusta Londres Set/26</td><td class="pend">n/d</td><td><strong>US$ 3.806/t</strong> (▲ +0,50%)</td><td>3.787 (−0,29%)</td></tr>
-        <tr><td>ICF B3 Set/26 (arábica 4/5)</td><td class="pend">n/d</td><td><strong>US$ 404,05/saca</strong> (▲ +0,36%)</td><td>402,00 (+2,68%)</td></tr>
-        <tr><td>ICF B3 Dez/26 (arábica 4/5)</td><td class="pend">n/d</td><td><strong>US$ 384,00/saca</strong> (▼ −0,26%)</td><td>384,00 (+2,94%)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>💵 Câmbio e macro</h2>
-    <div class="sub"><strong>Terça fechada ✓: Ibov 167.874 (−2,50%, pior desde 20/jan, 6ª queda); dólar R$ 5,161 (+0,98%); PTAX 5,1285 (+0,63%)</strong> — IPCA acima do consenso + ata dura do Copom + eleitoral. <strong>Hoje o câmbio tem dois gatilhos: CPI dos EUA (9h30 BRT) e WASDE (13h BRT).</strong> Dólar a 5,16 segue sendo sustentação direta dos preços agro em R$.</div>
-    <table>
-      <thead><tr><th>Item</th><th>Referência</th><th>Obs.</th></tr></thead>
-      <tbody>
-        <tr><td>Ibovespa 11/08 (fech.)</td><td><strong>167.874 pts (▼ −2,50%) ✓</strong></td><td>pior nível desde 20/jan; 6ª queda seguida</td></tr>
-        <tr><td>Dólar comercial 11/08 (fech.)</td><td><strong>R$ 5,161 (▲ +0,98%) ✓</strong></td><td>juros futuros em alta; risco fiscal/eleitoral</td></tr>
-        <tr><td>PTAX 11/08</td><td><strong>R$ 5,1285 (▲ +0,63%) ✓</strong></td><td>euro PTAX 5,9209 (+0,57%)</td></tr>
-        <tr><td>IPCA julho</td><td><strong>+0,07% · 12m +4,44% ✓</strong></td><td>acima do consenso (+0,03%); serviços pressionados</td></tr>
-        <tr><td>Petróleo 11/08 (intraday 12h)</td><td>Brent US$ 87,99 (+0,35%) · WTI US$ 82,56</td><td>negociação EUA–Irã sobre Ormuz limita ganhos</td></tr>
-        <tr><td>Copom — Selic</td><td><strong>14,00% a.a. ✓</strong></td><td>ata de 11/08 endureceu o tom</td></tr>
-        <tr><td>Fed (FOMC)</td><td>3,50%–3,75%</td><td><strong>CPI HOJE 9h30 BRT</strong> decide o call de corte em setembro</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>🌽 Milho — futuros B3 (CCM)</h2>
-    <div class="sub"><span class="pend">CCM no 9º dia SEM FONTE ABERTA (O Correio News parado desde 05/08 — checado de novo nesta manhã)</span>. Contexto: CEPEA a 65,65 (+0,61% no mês), dólar 5,16 e etanol com petróleo alto sustentam; <strong>a reação do CCM hoje deve vir do WASDE das 13h</strong>. Referência de futuros: 05/08 — <strong>cuidado com telas velhas</strong>.</div>
-    <table>
-      <thead><tr><th>Vencimento</th><th>06–11/08</th><th>Fech. 05/08</th><th>Ajuste 29/07</th></tr></thead>
-      <tbody>
-        <tr><td>Set/26</td><td class="pend">n/d</td><td><strong>68,30</strong> ▼</td><td>70,34</td></tr>
-        <tr><td>Jan/27</td><td class="pend">n/d</td><td class="pend">n/d</td><td>77,70</td></tr>
-        <tr><td>Mar/27</td><td class="pend">n/d</td><td><strong>77,79</strong> ▼</td><td>79,40</td></tr>
-        <tr><td>Mai/27</td><td class="pend">n/d</td><td class="pend">n/d</td><td>77,77</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>🇺🇸 Lavoura EUA — Crop Progress (semana até 09/08, divulgado 10/08 ✓)</h2>
-    <div class="sub"><strong>Milho estável em 61% bom/excelente; soja 62% (−1 p.p.)</strong>. <strong>O árbitro é HOJE: WASDE 13h BRT — consenso yield milho 182,4 bu/a</strong>, abaixo da tendência. Export Sales amanhã (qui 13/08) testa as 13 cargas chinesas de soja.</div>
-    <table>
-      <thead><tr><th>Cultura</th><th>Boa/Excelente</th><th>Var. semanal</th><th>Estágios</th></tr></thead>
-      <tbody>
-        <tr><td>Milho</td><td><strong>61%</strong></td><td class="flat">estável</td><td>94% pendoamento · 61% grão pastoso · 16% dente</td></tr>
-        <tr><td>Soja</td><td><strong>62%</strong></td><td class="down">▼ −1 p.p.</td><td>93% floração · 74% formação de vagens</td></tr>
-        <tr><td>Trigo primavera</td><td>51%</td><td class="down">▼ −4 p.p.</td><td>24% colhido (à frente da média)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <footer>
-    Fontes: <a href="https://cepea.org.br/br/indicador/boi-gordo.aspx">CEPEA boi</a> · <a href="https://cepea.org.br/br/indicador/milho.aspx">CEPEA milho</a> · <a href="https://cepea.org.br/br/indicador/soja.aspx">CEPEA soja</a> · <a href="https://cepea.org.br/br/indicador/cafe.aspx">CEPEA café</a> (linhas de 11/08 conferidas às 7h10 de 12/08 ✓) · <a href="https://portaldbo.com.br/cotacoes-do-boi-gordo-11-8-26/">Portal DBO/Agrifatto (físico 11/08 ✓)</a> · <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-august-11-2026/">Brownfield (CBOT + CME 11/08 ✓)</a> · <a href="https://financenews.com.br/2026/08/ibovespa-fecha-em-250-dolar-sobe-a-r-516/">Finance News (Ibov/dólar 11/08 ✓)</a> · <a href="https://trademap.com.br/agencia/boletim-cambial-11-08-euro-e-dolar-ptax">TradeMap (PTAX 11/08 ✓)</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café (ainda 10/08)</a>
-    <p style="margin-top:10px">Regra do painel: só números confirmados por fonte com data; "n/d" ou marcação laranja quando não confirmado. Corte das 7h de 12/08 rodou no horário ✓ e fechou terça 11/08 (CEPEA ×5, Chicago Set, CME, físico). WASDE hoje 13h BRT + CPI EUA 9h30 → corte das 16h40 captura a reação. Material informativo — não constitui recomendação de investimento.</p>
-  </footer>
-</div>
 </body>
 </html>

@@ -3,102 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notícias Agro — Mesa de Operações</title>
+<title>Newsflow Agro — Pré-Pregão</title>
 <style>
-:root{--bg:#f5f7fa;--card:#ffffff;--txt:#1a2233;--muted:#5b6b82;--accent:#0a66c2;--border:#dde4ee;--up:#0a7d33;--down:#c22114;--warn-bg:#fff3e0;--warn-txt:#b45309;--warn-border:#f59e0b;--tag-bg:#eef2f8;}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--card:#161b22;--txt:#e6edf3;--muted:#8b98a9;--accent:#4da3ff;--border:#2a3340;--up:#3fb950;--down:#f85149;--warn-bg:#2b1d05;--warn-txt:#f0a742;--warn-border:#b45309;--tag-bg:#1c2430;}}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.65;padding:16px}
-.container{max-width:900px;margin:0 auto}
-header{background:var(--card);border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:10px;padding:18px 20px;margin-bottom:14px}
-h1{font-size:21px;color:var(--accent)}
-.timestamp{color:var(--muted);font-size:13px;margin-top:4px}
-.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
-.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 15px}
-.kpi-card .lbl{font-size:11.5px;color:var(--muted);text-transform:uppercase}
-.kpi-card .val{font-size:20px;font-weight:700;margin-top:2px}
-.kpi-card .sub{font-size:12px;color:var(--muted)}
-.sec{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px}
-h2{font-size:16px;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.tag{font-size:11px;font-weight:700;text-transform:uppercase;padding:2px 9px;border-radius:20px;background:var(--tag-bg);letter-spacing:.4px}
-.tag.alta{color:var(--up)}.tag.baixa{color:var(--down)}.tag.neutro{color:var(--muted)}.tag.misto{color:var(--warn-txt)}
-p{margin-bottom:8px;color:var(--txt);font-size:14px}
-.pend{color:var(--warn-txt);font-weight:600}
-ul{margin:0 0 8px 20px;font-size:14px}
-li{margin-bottom:5px}
-.sources{font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin-top:6px}
+  :root{
+    --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
+    --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --neutral:#5c594f;
+    --accent:#2c5f8a; --chip:#eef2f6; --warn-bg:#fff4e0; --warn-ink:#8a5a00; --warn-line:#e8c887;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#191817; --surface:#232220; --ink:#eceae4; --ink-2:#b0ac9f; --ink-3:#807c6f;
+      --line:#38362f; --up:#4cc98a; --down:#e5766c; --neutral:#b0ac9f;
+      --accent:#7fb0da; --chip:#2a3138; --warn-bg:#3a2f18; --warn-ink:#e8c887; --warn-line:#5c4a24;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;padding:28px 20px 40px}
+  .wrap{max-width:860px;margin:0 auto}
+  header{margin-bottom:22px}
+  .brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:26px;font-weight:700;margin-top:4px}
+  .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
+  .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+  .kpi .value{font-size:22px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+  .kpi .delta{font-size:13px;font-weight:600;margin-top:2px}
+  .kpi .ref{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--neutral)}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  section h2{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  section p{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
+  section p strong{color:var(--ink)}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:6px;padding:2px 8px}
+  .tag.alta{background:rgba(26,122,74,.12);color:var(--up)}
+  .tag.baixa{background:rgba(179,55,46,.12);color:var(--down)}
+  .tag.misto{background:var(--chip);color:var(--neutral)}
+  .pend{color:var(--warn-ink);font-weight:600}
+  ul.agenda{list-style:none;margin-top:4px}
+  ul.agenda li{font-size:14.5px;color:var(--ink-2);padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
+  ul.agenda li:last-child{border-bottom:none}
+  ul.agenda .when{font-weight:700;color:var(--ink);min-width:104px;font-variant-numeric:tabular-nums}
+  footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
+  footer a{color:var(--accent);text-decoration:none}
+  .sources{margin-top:8px;line-height:1.9}
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>🇧🇷 FERIADO SEM PREGÃO — CORTE DA NOITE FECHA O CAFÉ CEPEA: ARÁBICA CAI 5% NA SEMANA (4 QUEDAS SEGUIDAS); SOJA ACIMA DE R$ 160 RUMO À SEMANA DO WASDE</h1>
-<p class="timestamp">Segunda-feira, 7 de setembro de 2026 · Corte das 19h50 — Independência (B3 fechada) + Labor Day (EUA fechados) · Atualizado ~19h55 (São Paulo, BR)</p>
-</header>
+<div class="wrap">
+  <header>
+    <div class="brand">Newsflow Agro</div>
+    <h1>Pré-Pregão</h1>
+    <div class="meta"><strong>Terça-feira, 8 de setembro de 2026 · 06:15 (São Paulo, BR)</strong> · BGI · SJC · CCM · ICF</div>
+    <div class="banner">🟢 <strong>Os 5 indicadores CEPEA de sexta 04/09 estão fechados ✓.</strong> Segunda 07/09 foi <strong>feriado duplo</strong> — Independência aqui, Labor Day nos EUA — com B3, CME e CBOT fechados: <strong>não existe indicador nem ajuste de 07/09, e 04/09 é o D-1 correto para hoje.</strong> 🛢️ <strong>Brent a US$ 99,05 (+2,22%), máxima de 6 semanas</strong>, com Ormuz de volta ao radar. 📅 <strong>Sexta 11/09 concentra tudo: WASDE de setembro, IPCA de agosto e CPI dos EUA no mesmo dia.</strong></div>
+  </header>
 
-<div class="kpi">
-<div class="kpi-card"><div class="lbl">🌱 Soja CEPEA (04/09 ✓)</div><div class="val">R$ 160,87</div><div class="sub">+0,46% sexta · +0,90% na semana</div></div>
-<div class="kpi-card"><div class="lbl">🌽 Milho CBOT Dez (04/09 ✓)</div><div class="val">US$ 5,36¾</div><div class="sub">−4¢ · realização pré-feriado</div></div>
-<div class="kpi-card"><div class="lbl">☕ Arábica CEPEA (04/09 ✓)</div><div class="val">R$ 1.659,93</div><div class="sub">−0,74% sexta · −5,06% na semana</div></div>
-<div class="kpi-card"><div class="lbl">📈 Ibovespa (04/09 ✓)</div><div class="val">185.147</div><div class="sub">−0,02% · dólar R$ 5,13</div></div>
-</div>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Boi · CEPEA 04/09</div>
+      <div class="value">R$ 347,70/@</div>
+      <div class="delta up">▲ +0,03% ✓</div>
+      <div class="ref">4 altas seguidas · +0,96% no mês</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Milho · CEPEA 04/09</div>
+      <div class="value">R$ 70,93</div>
+      <div class="delta down">▼ −0,18% ✓</div>
+      <div class="ref">acomodou no patamar dos R$ 71</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Soja · CEPEA 04/09</div>
+      <div class="value">R$ 160,87</div>
+      <div class="delta up">▲ +0,46% ✓</div>
+      <div class="ref">fechou a semana no positivo</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Café · CEPEA 04/09</div>
+      <div class="value">R$ 1.659,93</div>
+      <div class="delta down">▼ −0,74% ✓</div>
+      <div class="ref"><strong>−5,06% na semana</strong> · 4 quedas seguidas</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Brent · hoje 08/09</div>
+      <div class="value">US$ 99,05 ▲</div>
+      <div class="delta up">+2,22% · máxima de 6 semanas</div>
+      <div class="ref">Irã/Ormuz · +~10% na semana passada</div>
+    </div>
+  </div>
 
-<div class="sec">
-<h2>📋 Balanço — segunda 07/09 (sem pregão; retrato de sexta 04/09 agora COMPLETO)</h2>
-<ul>
-<li><strong>Hoje não há mercado:</strong> Independência no Brasil (B3/CEPEA parados) e Labor Day nos EUA (CBOT/CME/ICE NY fechados). Tudo reabre <strong>terça 08/09</strong> — já dentro da semana do WASDE.</li>
-<li><strong>Corte da noite fechou o retrato de sexta: 4/4 indicadores CEPEA confirmados ✓</strong> — a pendência do café caiu: arábica R$ 1.659,93 (−0,74%) e conilon R$ 976,71 (−0,34%), agora com data confirmada.</li>
-<li><strong class="pend">Transparência: os painéis ficaram sem atualização de 22/08 a 07/09</strong> (falha dos cortes automáticos). O dia a dia de 22/08–03/09 fica como lacuna registrada. No período, os movimentos foram grandes: milho CBOT rolou para Dez e foi a US$ 5,36¾, soja Nov a US$ 13,09¾, arábica NY caiu ~10%, Ibov saltou de ~168 mil para ~185 mil.</li>
-<li><strong>Soja no físico rompeu os R$ 160:</strong> CEPEA de sexta ✓ a R$ 160,87 (+0,46% no dia, +0,90% na semana) — demanda firme e vendedor retraído. Milho a R$ 70,93 e boi a R$ 347,70, ambos com semana positiva. O café foi a exceção: semana pesada nos dois indicadores.</li>
-<li><strong>Chicago fechou a sexta em realização generalizada antes do feriado</strong> (milho −4¢, soja −6½¢, trigo −20¼¢), depois de começar setembro em alta. O teste de fogo é sexta: <strong>WASDE de setembro</strong>, o primeiro após o Pro Farmer ter apontado milho abaixo do USDA.</li>
-</ul>
-</div>
+  <section>
+    <h2>🧭 O que interessa na abertura</h2>
+    <p><strong>A semana começa hoje, não ontem.</strong> O feriado duplo de segunda tirou o Brasil e os EUA do mapa ao mesmo tempo, então o mercado abre com quatro dias de informação represada e uma agenda que despeja tudo na sexta: <strong>WASDE de setembro, IPCA de agosto e CPI americano no mesmo dia</strong>.</p>
+    <p><strong>O WASDE é o evento.</strong> O USDA trabalha com produtividade de 180,7 sc/acre no milho americano; o Pro Farmer, depois de rodar o Crop Tour, viu <strong>173,2</strong>, e a Allendale, 178,7. É um gap grande — e a condição de lavoura em <strong>57% bom/excelente contra 69% um ano atrás</strong> pesa do mesmo lado. Na soja o desencontro é pequeno (52,7 do USDA contra 53,3 do Pro Farmer e 52,6 da Allendale), o que concentra o risco de revisão no milho. Vale lembrar que o relatório de agosto já cortou 75 mi bu do carryout velho e 137 mi bu do estoque final 26/27.</p>
+    <p><strong>O segundo motor é o petróleo.</strong> O Brent está em <strong>US$ 99,05 (+2,22%), máxima de seis semanas</strong>, depois de subir cerca de 10% na semana passada com a tensão em torno do Estreito de Ormuz. Isso mexe com o agro nos dois sentidos: sustenta o complexo de energia — leia-se etanol, e por tabela o milho — e ao mesmo tempo encarece frete e insumos, além de complicar a leitura de inflação em plena semana de CPI e IPCA. Com o dólar a <strong>R$ 5,1308</strong>, a paridade de exportação segue confortável para o vendedor brasileiro.</p>
+  </section>
 
-<div class="sec">
-<h2>🌱 Soja (SJC) <span class="tag alta">Físico rompe R$ 160; Chicago segura os US$ 13</span></h2>
-<p><strong>O CEPEA de sexta ✓ confirmou o rompimento: R$ 160,87 em Paranaguá</strong> (+0,46% no dia; semana de 159,44 → 160,87), com o CEPEA descrevendo demanda firme e recuo vendedor. No Paraná, R$ 152,10 (+0,28%). Em Chicago, a soja Nov fechou a sexta a US$ 13,09¾ (−6½¢) — realizou antes do feriado, mas segurou o patamar de US$ 13 conquistado no rali. <span class="pend">Atenção terça: reabertura posiciona para o WASDE de sexta; Export Sales quinta diz se a China manteve o ritmo forte de compras da nova safra.</span></p>
-</div>
+  <section>
+    <h2>🌽 Milho (CCM) <span class="tag alta">O WASDE de sexta é assimétrico a favor do comprado</span></h2>
+    <p>O indicador CEPEA fechou a semana a <strong>R$ 70,93 (−0,18%)</strong>, acomodando depois de subir 1,04% na segunda — o patamar dos R$ 71 se consolidou. Em Chicago, sexta foi de <strong>3ª baixa seguida: Dez/26 a US$ 5,36¾ (−4¢)</strong>, mais por arrasto do trigo e ajuste pré-feriado do que por fundamento próprio.</p>
+    <p><strong>A assimetria está no WASDE.</strong> Se o USDA caminhar na direção do Pro Farmer (173,2) ou mesmo da Allendale (178,7), o corte de produtividade é relevante — a Allendale projeta produção de 15,833 bi bu, 7% abaixo do ano passado, com as maiores quebras no Corn Belt Oeste (SD −15%, KS −14%). O Brent a US$ 99 reforça o lado comprado via demanda de etanol. Do outro lado, o calor extremo desta semana nas Planícies acelera a maturação e favorece a colheita, o que é oferta chegando.</p>
+  </section>
 
-<div class="sec">
-<h2>🌽 Milho (CCM) <span class="tag misto">CBOT a US$ 5,36¾ (Dez) após rali; físico fez pausa na sexta</span></h2>
-<p>O contrato de referência rolou para <strong>Dez/26, que fechou sexta a US$ 5,36¾</strong> (−4¢, realização pré-feriado) — patamar muito acima dos ~US$ 4,80 (Set) de meados de agosto, com o mercado tendo comprado a tese do Pro Farmer (milho abaixo dos 180,7 bpa do USDA). No físico, o CEPEA fez pausa na sexta (R$ 70,93, −0,18%) mas fechou a semana +1,00%. <span class="pend">Sexta 11/09, o WASDE de setembro arbitra a tese do yield menor — o evento da semana para o milho. CCM B3 de 04/09: n/d (sem fonte aberta; retomamos na reabertura).</span></p>
-</div>
+  <section>
+    <h2>🌱 Soja (SJC) <span class="tag misto">Risco no clima de enchimento; WASDE com pouco gap</span></h2>
+    <p>O CEPEA Paranaguá fechou a sexta a <strong>R$ 160,87 (+0,46%)</strong>, no positivo. Em Chicago, o Nov/26 cedeu para <strong>US$ 13,09¾ (−6½¢)</strong>, com as compras chinesas limitando a queda.</p>
+    <p>Na soja o WASDE tende a ser menos explosivo — as estimativas privadas estão praticamente em cima da oficial. <strong>O que merece atenção é o clima:</strong> o calor acima de 100°F nas Planícies Central e Sul e perto disso no centro de Illinois chega justamente com a soja em enchimento de vagem, o estágio mais sensível a estresse térmico. No Brasil, a safra 26/27 começou: <strong>0,05% da área plantada</strong> (contra 0,02% no ano passado), puxada pelo Paraná com as chuvas da semana passada, e o <strong>vazio sanitário de Mato Grosso terminou ontem</strong>, liberando o plantio em áreas de algodão.</p>
+    <p><span class="pend">Ressalva: soja e milho não têm cotação confirmada na madrugada de hoje — só o trigo, negociado a ~737,93 ¢/bu (+3,06%), devolvendo a queda de sexta porque a investida por um acordo Rússia–Ucrânia não avançou. Não tire direção da soja da madrugada.</span></p>
+  </section>
 
-<div class="sec">
-<h2>🐂 Boi Gordo (BGI) <span class="tag misto">Físico firme (+0,96% na semana); CME em queda</span></h2>
-<p>O CEPEA fechou a semana a <strong>R$ 347,70</strong> (+0,03% na sexta; +0,96% na semana, de 344,40) — oferta restrita segue dando sustentação. A FarmNews aponta o futuro do boi na B3 em máxima de preço e de posições em aberto 🔶 (sem número datado em fonte aberta). Já a CME divergiu: live cattle Out fechou sexta a US$ 212,95 (−1,35), com a semana em queda — o mercado americano segue devolvendo prêmio desde o topo de agosto. <span class="pend">BGI e físico por praça: n/d desde a lacuna — retomamos com CompreRural na reabertura.</span></p>
-</div>
+  <section>
+    <h2>🐂 Boi Gordo (BGI) <span class="tag misto">Indicador firme, curva com ágio de R$ 26 — e a China travando o embarque</span></h2>
+    <p>O indicador subiu pela quarta sessão seguida e fechou a <strong>R$ 347,70 (+0,03%), +0,96% no mês</strong>. Na B3 a curva subiu em todos os vencimentos, com o <strong>Out/26 a 373,95 (+0,59%) — ágio de R$ 26,25/@ sobre o indicador</strong> —, e o Jan/27 já a 380,80. No físico, a Scot trouxe todas as praças estáveis a 30 dias: Barretos, Dourados e Paragominas a 345, Campo Grande a 343, Triângulo a 337, Goiânia e Marabá a 335.</p>
+    <p><strong>O dado que pesa do outro lado é a exportação.</strong> Agosto veio <strong>27,1% abaixo em volume</strong> na comparação anual, com receita de US$ 1,2 bi (−19,7%). A causa é objetiva: a <strong>cota chinesa de 1,106 mi t já estava 90% consumida em 10 de agosto</strong>, e acima dela incide tarifa adicional de 55% — o embarque simplesmente parou. No acumulado de janeiro a agosto o ano ainda é positivo (+4,7% em volume, +22,3% em valor), mas a porta chinesa fechada muda a dinâmica do 4º trimestre, e é isso que a curva de outubro em diante precisa justificar. <span class="pend">As escalas de abate da semana não foram confirmadas — a busca devolveu matéria reciclada de 19/08, descartada.</span></p>
+  </section>
 
-<div class="sec">
-<h2>☕ Café (ICF) <span class="tag baixa">CEPEA confirmado ✓: arábica −5,06% na semana, 4 quedas seguidas; conilon −4,44%</span></h2>
-<p><strong>Pendência fechada neste corte — o físico confirmou a semana pesada:</strong> o indicador CEPEA arábica fechou sexta ✓ a <strong>R$ 1.659,93</strong> (−0,74%), acumulando <strong>−5,06% na semana</strong> (de 1.748,44 em 31/08), com queda nas 4 sessões após segunda (−1,02%, −1,96%, −1,44%, −0,74%). O <strong>conilon ✓ fechou a R$ 976,71</strong> (−0,34%; −4,44% na semana) — vs 1.051,93 no último painel (21/08), −7,2% no período da lacuna, coerente com Londres. Nas bolsas, sexta foi mista: arábica NY Set estável a 324,25¢ (Dez 295,60¢) após cair ~10% desde 21/08; robusta reagiu (+1,67%, US$ 3.400/t) e o ICF B3 Dez subiu 0,86% (US$ 362,00). <span class="pend">Terça: NY reabre e o CEPEA volta a publicar — primeiro teste de fundo após a correção.</span></p>
-</div>
+  <section>
+    <h2>☕ Café (ICF) <span class="tag baixa">Quatro quedas seguidas; Dez perdeu os 300 ¢/lb</span></h2>
+    <p>Foi a pior semana do café em muito tempo: o <strong>CEPEA arábica caiu 5,06%</strong>, de R$ 1.748,44 em 31/08 para <strong>R$ 1.659,93 (−0,74% na sexta)</strong>, com quatro quedas consecutivas; o <strong>conilon recuou 4,44% e perdeu o patamar dos R$ 1.000, a R$ 976,71</strong>. Em Nova York o <strong>Dez/26 rompeu os 300 ¢/lb e marcou mínima de três meses, a 295,60</strong>, embora a sexta já tenha mostrado estabilização (Set 324,25, praticamente de lado; Mar/27 +2,35 pts). Em Londres o robusta subiu 1,67%, para cerca de US$ 3.400/t.</p>
+    <p><strong>A explicação é de oferta:</strong> armazéns cheios no Brasil forçando o produtor represado a vender, exportações do Vietnã <strong>13,7% acima em janeiro–agosto (1,33 mi t)</strong>, chuvas melhorando a perspectiva da safra 27/28 e aversão a risco no macro. <strong>O contrapeso que segura o piso são os estoques certificados na ICE, perto da mínima em 26 anos</strong> — a referência disponível é de 27/08, sem número novo de setembro. Não há nenhum evento de geada em área cafeeira confirmado neste mês.</p>
+  </section>
 
-<div class="sec">
-<h2>💵 Macro <span class="tag misto">Ibov a 185 mil (2ª melhor semana do ano); dólar R$ 5,13; payroll fraco</span></h2>
-<p>Sexta ✓: Ibovespa praticamente estável a <strong>185.147 pts</strong> (−0,02%), digerindo o payroll fraco nos EUA; dólar comercial subiu 0,52% a <strong>R$ 5,1308</strong> (PTAX 5,1253). A imprensa financeira classificou a semana como a 2ª melhor do ano para o Ibov 🔶 — o índice saltou de ~168 mil (20/08) para ~185 mil dentro do período da lacuna. Payroll fraco reforça aposta de corte do Fed no FOMC de meados de setembro — dólar mais fraco à frente seria vento contra para os preços internos em R$. Selic segue 14,00%.</p>
-</div>
+  <section>
+    <h2>💵 Câmbio &amp; Macro <span class="tag misto">Semana de inflação dos dois lados, com petróleo a US$ 99</span></h2>
+    <p>Sexta fechou com o <strong>Ibovespa a 185.147,15 pts (−0,02%), acumulando +14,91% no ano</strong>, e o <strong>dólar comercial a R$ 5,1308 (+0,52%)</strong>. Hoje saem o IGP-DI e o Boletim Focus; quinta tem PMS, PPI americano e <strong>decisão do BCE</strong>; sexta concentra <strong>IPCA de agosto e CPI dos EUA</strong>, no mesmo dia do WASDE. O FOMC é em 15–16/09 e o Copom vem na sequência.</p>
+    <p>O ponto de atenção: <strong>petróleo a US$ 99 em plena semana de inflação</strong> complica a narrativa de cortes de juros nos dois lados. Para o agro exportador, dólar acima de R$ 5,10 continua sendo vento a favor. <span class="pend">Variação semanal de Ibovespa e dólar não confirmada — só os fechamentos diários de 04/09.</span></p>
+  </section>
 
-<div class="sec">
-<h2>🌦️ Clima</h2>
-<p><strong>Sem cobertura climática validada durante a lacuna (22/08–03/09).</strong> Último quadro registrado: condições de milho/soja nos EUA em queda por 2 semanas (até 16/08) e excesso de chuva no leste do Belt — pano de fundo que alimentou o rali de Chicago. O Crop Progress de <strong>terça à noite</strong> (adiado pelo feriado) atualiza o quadro às vésperas do WASDE. Brasil: atenção à largada do plantio de soja no Centro-Oeste com setembro começando.</p>
-</div>
+  <section>
+    <h2>🌦️ Clima — regiões produtoras</h2>
+    <p><strong>EUA:</strong> calor extremo, com <strong>máximas acima de 100°F nas Planícies Central e Sul</strong> e perto disso no centro de Illinois, sem chuva relevante no Meio-Mississippi e sem risco de geada no período. O efeito é duplo — acelera a maturação e favorece a colheita, mas estressa o que ainda está enchendo grão, e a soja em formação de vagem é a mais exposta. Noroeste mais frio e chuvoso.</p>
+    <p><strong>Brasil:</strong> as chuvas do início da semana passada destravaram o plantio no Paraná e a soja 26/27 saiu do zero (<strong>0,05% da área</strong>). O vazio sanitário de Mato Grosso terminou ontem. O milho de verão no centro-sul já está em <strong>17% plantado</strong>, contra 11% na semana anterior e 12% no ano passado, puxado pelo Rio Grande do Sul. Sem evento de geada no Sul ou nas cafeeiras.</p>
+  </section>
 
-<div class="sec">
-<h2>📅 O que move a reabertura de terça (08/09)</h2>
-<ul>
-<li><strong>Posicionamento pré-WASDE:</strong> Chicago reabre com 3 sessões até o relatório de sexta 11/09 — o primeiro que pode validar (ou não) o Pro Farmer abaixo do USDA no milho.</li>
-<li><strong>Crop Progress terça à noite</strong> (semana até 06/09): condições seguem piorando?</li>
-<li><strong>Soja física:</strong> acima de R$ 160, prêmios e câmbio ditam se o movimento estica — dólar em R$ 5,13 tira um pouco do impulso.</li>
-<li><strong>Café:</strong> após 4 quedas seguidas no físico e −10% em NY desde 21/08, terça mostra se a correção encontra fundo.</li>
-<li><strong>Export Sales quinta 10/09:</strong> China manteve as compras pesadas de soja nova safra?</li>
-<li><strong>CEPEA volta a publicar terça</strong> (hoje feriado) — painel retoma a série diária dos 4 indicadores.</li>
-</ul>
-</div>
+  <section>
+    <h2>📅 Agenda da semana</h2>
+    <ul class="agenda">
+      <li><span class="when">Hoje 08/09</span><span>IGP-DI e Boletim Focus · reabertura de B3, CME e CBOT após o feriado duplo</span></li>
+      <li><span class="when">Hoje 19h</span><span>Indicadores CEPEA de hoje (saem entre 17h e 19h30) + fechamento de Chicago, CME e câmbio</span></li>
+      <li><span class="when">Qui 10/09</span><span>PMS · <strong>PPI dos EUA</strong> · <strong>decisão de juros do BCE</strong></span></li>
+      <li><span class="when">Sex 11/09</span><span><strong>WASDE de setembro + IPCA de agosto + CPI dos EUA</strong> — o dia da semana</span></li>
+      <li><span class="when">15–16/09</span><span>FOMC; Copom na semana seguinte</span></li>
+    </ul>
+  </section>
 
-<div class="sec sources">
-<strong>Fontes:</strong> Café CEPEA ×2 de 04/09 ✓ — tabela datada do indicador CEPEA/ESALQ via Notícias Agrícolas (corte das 19h50) · CEPEA boi/milho/soja via repercussão — agro.mt (06/09) e Piranot (05/09), resumo semanal 31/08–04/09 com números idênticos ✓ (rota oficial cepea.org.br falhou pelo 2º corte seguido) · Brownfield Ag News — Closing Grain and Livestock Futures Sep 4, 2026 ✓ + manchetes da semana · cotacaodocafe.com — bolsas de café, data explícita 04/09 ✓ · Diário do Grande ABC — Ibov/dólar/PTAX de 04/09 ✓ · Forbes Brasil / FarmNews — contexto 🔶. Somente números com fonte e data; 🔶 = parcial/sem confirmação plena. Painel informativo; não é recomendação de investimento.
-</div>
+  <footer>
+    <div><strong>Fontes desta edição:</strong></div>
+    <div class="sources">
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo/boi-gordo-indicador-esalq-bmf">CEPEA boi — série 04/09 ✓</a> ·
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/milho/indicador-cepea-esalq-milho">CEPEA milho — série 04/09 ✓</a> ·
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/soja/soja-indicador-cepea-esalq-porto-paranagua">CEPEA soja — série 04/09 ✓</a> ·
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-arabica">CEPEA café arábica ✓</a> ·
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-conillon">CEPEA conilon ✓</a> ·
+      <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-september-4-2026/">Brownfield — CBOT/CME 04/09</a> ·
+      <a href="https://www.totalfarmmarketing.com/news/tfm-daily-market-summary-9-4-2026/">TFM — 04/09</a> ·
+      <a href="https://www.agrolatam.com/usa/news/september-wasde-corn-yield-grain-prices-usda-2026/">Agrolatam — prévia do WASDE</a> ·
+      <a href="https://www.brownfieldagnews.com/news/allendale-survey-shows-lower-2026-corn-soybean-yields/">Brownfield — Allendale</a> ·
+      <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo">NA — BGI B3 04/09</a> ·
+      <a href="https://www.scotconsultoria.com.br/cotacoes/boi-gordo/">Scot — físico 04/09</a> ·
+      <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/cota-chinesa-faz-exportacao-de-carne-bovina-recuar-271-em-agosto">Agência Brasil — exportação de carne em agosto</a> ·
+      <a href="https://afnews.com.br/abaixo-de-300-cents-lb-arabica-atinge-minima-de-tres-meses-em-ny-com-melhora-no-clima-e-maior-oferta/">AF News — arábica abaixo de 300 ¢/lb</a> ·
+      <a href="https://www.dgabc.com.br/Noticia/4345236/fechamento-do-mercado-financeiro">Fechamento Ibov/dólar 04/09</a> ·
+      <a href="https://tradingeconomics.com/commodity/brent-crude-oil">Brent 08/09</a> ·
+      <a href="https://www.agrolatam.com/usa/weather/us-farm-weather-plains-heat-crops-livestock-september-2026/">Clima EUA</a> ·
+      <a href="https://br.investing.com/news/commodities-news/produtores-do-parana-iniciam-plantio-da-safra-de-soja-20262027-no-brasil-diz-agrural-2058383">AgRural — plantio 26/07</a>
+    </div>
+    <p style="margin-top:10px"><strong>Não confirmado nesta edição:</strong> soja e milho em Chicago na madrugada de hoje; escalas de abate da semana; variação semanal de Ibovespa e dólar; estoques certificados ICE com data de setembro; revisões da StoneX para o WASDE. Material informativo para a mesa de operações — não constitui recomendação de investimento.</p>
+  </footer>
 </div>
 </body>
 </html>

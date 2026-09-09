@@ -9,12 +9,14 @@
     --bg:#f6f5f1; --surface:#ffffff; --ink:#1f1e1b; --ink-2:#5c594f; --ink-3:#8a8677;
     --line:#e5e2d9; --up:#1a7a4a; --down:#b3372e; --neutral:#5c594f;
     --accent:#2c5f8a; --chip:#eef2f6; --warn-bg:#fff4e0; --warn-ink:#8a5a00; --warn-line:#e8c887;
+    --hot-bg:#fdecea; --hot-ink:#9b2c22; --hot-line:#e8b0a8;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#191817; --surface:#232220; --ink:#eceae4; --ink-2:#b0ac9f; --ink-3:#807c6f;
       --line:#38362f; --up:#4cc98a; --down:#e5766c; --neutral:#b0ac9f;
       --accent:#7fb0da; --chip:#2a3138; --warn-bg:#3a2f18; --warn-ink:#e8c887; --warn-line:#5c4a24;
+      --hot-bg:#3a1f1b; --hot-ink:#f0a79c; --hot-line:#6b332b;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -25,6 +27,7 @@
   h1{font-size:26px;font-weight:700;margin-top:4px}
   .meta{color:var(--ink-2);font-size:14px;margin-top:4px}
   .banner{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 14px;font-size:13px;margin:14px 0 0}
+  .banner.hot{background:var(--hot-bg);color:var(--hot-ink);border-color:var(--hot-line)}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
   .kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
@@ -41,6 +44,7 @@
   td:first-child{color:var(--ink);font-weight:600}
   tr:last-child td{border-bottom:none}
   .pend{color:var(--warn-ink);font-weight:600}
+  .hoje td{background:rgba(44,95,138,.06)}
   footer{margin-top:24px;font-size:12px;color:var(--ink-3)}
   footer a{color:var(--accent);text-decoration:none}
 </style>
@@ -50,190 +54,209 @@
   <header>
     <div class="brand">Newsflow Agro</div>
     <h1>Painel de Dados</h1>
-    <div class="meta">Atualizado: <strong>terça-feira, 08/09/2026, 06:15 (São Paulo, BR)</strong> · BGI · SJC · CCM · ICF · <strong>pré-pregão</strong></div>
-    <div class="banner">🟢 <strong>Os 5 indicadores CEPEA de sexta 04/09 estão fechados ✓</strong> — segunda 07/09 foi <strong>feriado duplo</strong> (Independência no Brasil, Labor Day nos EUA): B3, CME e CBOT fechados, sem indicador e sem ajuste. <strong>04/09 é o último pregão válido e é o D-1 correto para hoje.</strong> 🛢️ <strong>Brent a US$ 99,05 (+2,22%), máxima de 6 semanas</strong>, com Ormuz de novo no radar — alta de ~10% na semana passada. 📅 <strong>Sexta 11/09 é o dia: WASDE de setembro + IPCA de agosto + CPI dos EUA, tudo junto.</strong></div>
+    <div class="meta">Atualizado: <strong>quarta-feira, 09/09/2026, 09:20 (São Paulo, BR)</strong> · BGI · SJC · CCM · ICF · <strong>pré-pregão</strong></div>
+    <div class="banner hot">🛢️ <strong>BRENT ROMPEU US$ 100 — primeira vez desde maio/26</strong> (US$ 100,4–100,8, +2,6% a +2,9% na manhã). Gatilhos: ataques houthis a instalações energéticas sauditas, EUA destruindo petroleiros ligados ao Irã, retaliação iraniana contra base americana na Jordânia e risco renovado em Ormuz. <strong>É o driver do dia</strong> — sustenta óleo de soja/biodiesel e etanol de milho, e encarece diesel, frete e fertilizante.</div>
+    <div class="banner">🟢 <strong>Os 5 indicadores CEPEA de terça 08/09 estão fechados ✓</strong> — D-1 cumprido. 📅 <strong>HOJE não sai CONAB, WASDE, EIA semanal nem Export Sales</strong> — é dia vazio de dado agro duro; ver a seção "Agenda" abaixo. ⚠️ Os cortes automáticos de ontem (16h40 e 19h) <strong>não publicaram</strong>; esta edição é manual e recompõe o dia inteiro de terça.</div>
   </header>
 
   <div class="kpis">
     <div class="kpi">
       <div class="label">Boi — Indicador CEPEA</div>
-      <div class="value">R$ 347,70/@</div>
-      <div class="delta up">▲ +0,03%</div>
-      <div class="ref"><strong>04/09 · OFICIAL ✓</strong> · +0,96% no mês · 4 altas seguidas</div>
+      <div class="value">R$ 348,35/@</div>
+      <div class="delta up">▲ +0,19%</div>
+      <div class="ref"><strong>08/09 · OFICIAL ✓</strong> · <strong>5ª alta seguida</strong></div>
     </div>
     <div class="kpi">
       <div class="label">Milho — CEPEA Campinas</div>
-      <div class="value">R$ 70,93</div>
-      <div class="delta down">▼ −0,18%</div>
-      <div class="ref"><strong>04/09 · OFICIAL ✓</strong> · ~+1,0% no mês · patamar dos R$ 71</div>
+      <div class="value">R$ 70,90</div>
+      <div class="delta flat">▼ −0,04%</div>
+      <div class="ref"><strong>08/09 · OFICIAL ✓</strong> · de lado nos R$ 71</div>
     </div>
     <div class="kpi">
       <div class="label">Soja — CEPEA Paranaguá</div>
-      <div class="value">R$ 160,87</div>
-      <div class="delta up">▲ +0,46%</div>
-      <div class="ref"><strong>04/09 · OFICIAL ✓</strong> · ~+0,9% no mês</div>
+      <div class="value">R$ 160,46</div>
+      <div class="delta down">▼ −0,25%</div>
+      <div class="ref"><strong>08/09 · OFICIAL ✓</strong> · dólar mais baixo pesou</div>
     </div>
     <div class="kpi">
       <div class="label">Café — CEPEA arábica</div>
-      <div class="value">R$ 1.659,93</div>
-      <div class="delta down">▼ −0,74%</div>
-      <div class="ref"><strong>04/09 · OFICIAL ✓</strong> · <strong>−5,06% na semana</strong> · 4 quedas seguidas</div>
+      <div class="value">R$ 1.635,57</div>
+      <div class="delta down">▼ −1,47%</div>
+      <div class="ref"><strong>08/09 · OFICIAL ✓</strong> · <strong>5ª queda seguida</strong></div>
     </div>
     <div class="kpi">
-      <div class="label">Brent — hoje 08/09</div>
-      <div class="value">US$ 99,05</div>
-      <div class="delta up">▲ +2,22%</div>
-      <div class="ref">máxima de 6 semanas · Ormuz/Irã · +~10% na semana passada</div>
+      <div class="label">Brent — agora 09/09</div>
+      <div class="value">~US$ 100,6</div>
+      <div class="delta up">▲ +2,6% a +2,9%</div>
+      <div class="ref"><strong>rompeu US$ 100</strong> · máxima desde maio/26</div>
     </div>
   </div>
 
   <section>
-    <h2>📊 Indicadores CEPEA/Esalq — semana de 01 a 04/09</h2>
-    <div class="sub">Série completa dos quatro dias úteis da semana passada, direto das tabelas datadas. <strong>07/09 não existe: feriado, sem indicador.</strong> O próximo indicador é o de hoje, que sai entre 17h e 19h30 e entra no corte das 19h.</div>
+    <h2>📅 AGENDA — o que sai hoje e nos próximos dias</h2>
+    <div class="sub"><strong>Resposta direta: hoje NÃO há CONAB, WASDE, EIA semanal nem Export Sales.</strong> É dia vazio de dado agro duro — o pregão fica refém do petróleo/geopolítica e do posicionamento pré-WASDE. Horários em BRT.</div>
     <table>
-      <thead><tr><th>Indicador</th><th>04/09 (sex)</th><th>03/09</th><th>02/09</th><th>01/09</th></tr></thead>
+      <thead><tr><th>Quando</th><th>Evento</th><th>Por que importa</th></tr></thead>
       <tbody>
-        <tr><td>Boi gordo (SP)</td><td><strong>R$ 347,70</strong> (▲ +0,03%) ✓</td><td>347,60 (+0,06%)</td><td>347,40 (+0,40%)</td><td>346,00 (+0,46%)</td></tr>
-        <tr><td>Milho (Campinas)</td><td><strong>R$ 70,93</strong> (▼ −0,18%) ✓</td><td>71,06 (+0,17%)</td><td>70,94 (−0,03%)</td><td>70,96 (+1,04%)</td></tr>
-        <tr><td>Soja (Paranaguá)</td><td><strong>R$ 160,87</strong> (▲ +0,46%) ✓</td><td>160,14 (−0,53%)</td><td>160,99 (−0,09%)</td><td>161,14 (+1,07%)</td></tr>
-        <tr><td>Café arábica (tipo 6)</td><td><strong>R$ 1.659,93</strong> (▼ −0,74%) ✓</td><td colspan="3">4 quedas seguidas · <strong>de 1.748,44 (31/08) a 1.659,93 = −5,06% na semana</strong></td></tr>
-        <tr><td>Café conilon</td><td><strong>R$ 976,71</strong> (▼ −0,34%) ✓</td><td colspan="3"><strong>−4,44% vs 31/08</strong> · perdeu o patamar dos R$ 1.000</td></tr>
+        <tr class="hoje"><td>Hoje · 10h00</td><td>Anfavea — produção e vendas de veículos (ago)</td><td>Proxy de atividade; marginal para o agro</td></tr>
+        <tr class="hoje"><td>Hoje · 12h00</td><td>Confiança do consumidor Reuters/Ipsos (BR)</td><td>Demanda doméstica de carne</td></tr>
+        <tr class="hoje"><td>Hoje · 14h00</td><td><strong>EIA Short-Term Energy Outlook (STEO)</strong></td><td>Projeções de preço/oferta de petróleo <strong>e de etanol</strong> — com Brent acima de 100, leitura relevante para o CCM via demanda de etanol de milho</td></tr>
+        <tr class="hoje"><td>Hoje · 14h00</td><td>Leilão de Treasury de 10 anos · falas de Lagarde (BCE) e Nagel (Buba)</td><td>Juros longos → dólar → BGI e SJC em reais</td></tr>
+        <tr class="hoje"><td>Hoje · 14h30</td><td>Fluxo cambial (BCB)</td><td>Direção do real</td></tr>
+        <tr class="hoje"><td>Hoje · 17h30</td><td><strong>API — estoques semanais de petróleo</strong> (prévia do EIA)</td><td>Antecipa o EIA de quinta; move o Brent e, por tabela, insumos e frete</td></tr>
+        <tr class="hoje"><td>Hoje · intradia</td><td><strong>Geopolítica: Ormuz, Irã, Arábia Saudita</strong> — risco vivo, sem hora marcada</td><td><strong>O principal driver do dia.</strong> Petróleo alto puxa óleo de soja/biodiesel e etanol; encarece diesel, frete e fertilizante</td></tr>
+        <tr><td>Qui 10/09 · 09h00</td><td>PMS serviços (jul) + PIM regional — IBGE</td><td>Atividade no Brasil</td></tr>
+        <tr><td>Qui 10/09 · 09h30</td><td><strong>PPI dos EUA (ago)</strong> + jobless claims</td><td>Curva do Fed → dólar → preços em reais</td></tr>
+        <tr><td>Qui 10/09 · 10h15</td><td><strong>Decisão de juros do BCE</strong></td><td>Euro/dólar; o DXY move o CBOT</td></tr>
+        <tr><td>Qui 10/09 · 13h e 15h</td><td><strong>EIA Weekly Petroleum Status — ADIADO de hoje para quinta</strong> por causa do feriado de 07/09</td><td>Estoques de petróleo, gasolina e <strong>etanol</strong>; com Brent em 100 o número pesa dobrado</td></tr>
+        <tr><td>Sex 11/09 · 09h00</td><td><strong>IPCA de agosto (IBGE)</strong> + INPC</td><td>Âncora da Selic → juro real e câmbio</td></tr>
+        <tr><td>Sex 11/09 · 09h30</td><td><strong>CPI dos EUA (ago)</strong></td><td>Se vier quente, dólar sobe e pressiona o CBOT</td></tr>
+        <tr><td>Sex 11/09 · 09h30</td><td><strong>USDA Weekly Export Sales — ATRASADO para sexta</strong> (feriado de 07/09)</td><td>Confirma o ritmo da demanda chinesa por soja americana — mexe nos prêmios de Paranaguá</td></tr>
+        <tr><td>Sex 11/09 · 13h00</td><td><strong>WASDE de setembro + Crop Production (NASS)</strong></td><td><strong>O evento da semana.</strong> Move SJC e CCM direto — ver a seção da prévia abaixo</td></tr>
+        <tr><td>Ter 15/09</td><td><strong>CONAB — 12º levantamento, último do ciclo 2025/26.</strong> <span class="pend">Horário não confirmado</span></td><td>Fecha a safra brasileira 25/26 de milho e soja</td></tr>
+        <tr><td>15–16/09</td><td>FOMC — decisão dia 16 às 15h00</td><td>Copom vem na semana seguinte</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🇺🇸 WASDE de setembro — sexta 11/09, o evento da semana</h2>
-    <div class="sub">O mercado chega ao relatório com um <strong>gap grande no milho e pequeno na soja</strong> entre a estimativa oficial e as privadas. Condição de lavoura em <strong>57% bom/excelente (30/08) contra 69% um ano antes</strong>. O WASDE de agosto já havia cortado 75 mi bu do carryout velho e 137 mi bu do estoque final 26/27.</div>
+    <h2>📊 Indicadores CEPEA/Esalq — 08/09 fechado ✓</h2>
+    <div class="sub">Boi na quinta alta seguida e café na quinta queda seguida — as duas pontas do painel andando em direções opostas. O próximo indicador é o de hoje, que sai entre 17h e 19h30.</div>
     <table>
-      <thead><tr><th>Produtividade EUA (sc/acre)</th><th>Milho</th><th>Soja</th><th>Leitura</th></tr></thead>
+      <thead><tr><th>Indicador</th><th>08/09 (ter)</th><th>04/09 (sex)</th><th>03/09</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td>Boi gordo (SP)</td><td><strong>R$ 348,35</strong> (▲ +0,19%) ✓</td><td>347,70 (+0,03%)</td><td>347,60 (+0,06%)</td><td class="up">5ª alta seguida</td></tr>
+        <tr><td>Milho (Campinas)</td><td><strong>R$ 70,90</strong> (▼ −0,04%) ✓</td><td>70,93 (−0,18%)</td><td>71,06 (+0,17%)</td><td class="flat">de lado nos R$ 71</td></tr>
+        <tr><td>Soja (Paranaguá)</td><td><strong>R$ 160,46</strong> (▼ −0,25%) ✓</td><td>160,87 (+0,46%)</td><td>160,14 (−0,53%)</td><td class="flat">dólar a 5,086 pesou</td></tr>
+        <tr><td>Café arábica (tipo 6)</td><td><strong>R$ 1.635,57</strong> (▼ −1,47%) ✓</td><td>1.659,93 (−0,74%)</td><td>1.672,25 (−1,44%)</td><td class="down">5ª queda · −6,5% desde 31/08</td></tr>
+        <tr><td>Café conilon</td><td><strong>R$ 980,78</strong> (▲ +0,42%) ✓</td><td>976,71 (−0,34%)</td><td>—</td><td class="up">parou a queda</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>🇺🇸 Prévia do WASDE — sexta 11/09, 13h</h2>
+    <div class="sub">O mercado chega com <strong>gap grande no milho e quase nulo na soja</strong> entre a estimativa oficial e as privadas. Condição de lavoura em <strong>57% bom/excelente (30/08) contra 69% um ano antes</strong>. O relatório de agosto já cortou 75 mi bu do carryout velho e 137 mi bu do estoque final 26/27.</div>
+    <table>
+      <thead><tr><th>Produtividade EUA (sc/acre)</th><th>Milho</th><th>Soja</th><th>Observação</th></tr></thead>
       <tbody>
         <tr><td>USDA — WASDE de agosto</td><td><strong>180,7</strong></td><td><strong>52,7</strong></td><td>número oficial a ser revisto sexta</td></tr>
-        <tr><td>Pro Farmer (Crop Tour)</td><td class="down">173,2</td><td>53,3</td><td><strong>−7,5 sc no milho</strong> vs USDA; soja levemente acima</td></tr>
-        <tr><td>Allendale (03/09)</td><td class="down">178,7</td><td>52,6</td><td>produção milho 15,833 bi bu (−7% a/a); soja 4,515 bi bu</td></tr>
-        <tr><td>Onde a quebra dói</td><td colspan="3">Corn Belt Oeste: SD −15% e KS −14% no milho; KS soja −24%. Illinois soja +4% (Allendale)</td></tr>
+        <tr><td>Pro Farmer (Crop Tour)</td><td class="down">173,2</td><td>53,3</td><td><strong>−7,5 sc no milho</strong> vs USDA</td></tr>
+        <tr><td>Allendale (03/09)</td><td class="down">178,7</td><td>52,6</td><td>milho 15,833 bi bu (−7% a/a); soja 4,515 bi bu</td></tr>
+        <tr><td>Onde a quebra dói</td><td colspan="3">Corn Belt Oeste: SD −15% e KS −14% no milho; KS soja −24%. Illinois soja +4%</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🌱 Grãos — Chicago (CBOT), fechamento de sexta 04/09 ✓</h2>
-    <div class="sub">Sexta foi de ajuste pré-feriado, com o trigo puxando tudo para baixo (manchetes de negociação de paz Rússia–Ucrânia + dólar forte). Milho na 3ª baixa seguida; compras chinesas seguraram a soja. <span class="pend">Segunda 08/09 não teve pregão (Labor Day). Na madrugada de hoje só o trigo tem cotação carimbada: ~737,93 ¢/bu (+3,06%), devolvendo a queda porque a investida por acordo Rússia–Ucrânia não avançou. Soja e milho sem cotação confirmada pós-04/09 — não operar direção pela madrugada.</span></div>
+    <h2>🌱 Grãos — Chicago (CBOT), fechamento de terça 08/09 ✓</h2>
+    <div class="sub">Dia de descolamento: <strong>soja e trigo subiram, milho caiu</strong>. O grande destaque foi o <strong>óleo de soja (+133 pts), puxado direto pelo petróleo</strong> — enquanto o farelo cedeu 4,90. Inspeções de exportação de milho vieram fortes: <strong>65,4 mi bu</strong> na semana até 03/09.</div>
     <table>
-      <thead><tr><th>Contrato</th><th>Fech. 04/09 ✓</th><th>Var. dia</th><th>Obs.</th></tr></thead>
+      <thead><tr><th>Contrato</th><th>Fech. 08/09 ✓</th><th>Var. dia</th><th>Fech. 04/09</th></tr></thead>
       <tbody>
-        <tr><td>Milho Dez/26</td><td><strong>US$ 5,36¾</strong></td><td class="down">▼ −4¢</td><td>3ª baixa seguida</td></tr>
-        <tr><td>Milho Mar/27</td><td>US$ 5,52¼</td><td class="down">▼ −3¾¢</td><td>—</td></tr>
-        <tr><td>Soja Nov/26</td><td><strong>US$ 13,09¾</strong></td><td class="down">▼ −6½¢</td><td>compras chinesas limitaram a queda</td></tr>
-        <tr><td>Soja Mar/27</td><td>US$ 13,30¼</td><td class="down">▼ −6½¢</td><td>—</td></tr>
-        <tr><td>Farelo Out/26</td><td>US$ 348,20</td><td class="down">▼ −0,40</td><td>—</td></tr>
-        <tr><td>Óleo de soja Out/26</td><td>68,89 ¢/lb</td><td class="down">▼ −74 pts</td><td>Brent a US$ 99 é suporte à frente</td></tr>
-        <tr><td>Trigo Chicago Dez/26</td><td><strong>US$ 7,34</strong></td><td class="down">▼ −20¼¢</td><td><strong>hoje ~7,38 (+3,06%)</strong> — devolveu a queda</td></tr>
-        <tr><td>Trigo KC Dez/26</td><td>US$ 8,02¼</td><td class="down">▼ −13¼¢</td><td>—</td></tr>
+        <tr><td>Soja Nov/26</td><td><strong>US$ 13,16¼</strong></td><td class="up">▲ +6½¢</td><td>13,09¾</td></tr>
+        <tr><td>Soja Mar/27</td><td>US$ 13,38½</td><td class="up">▲ +8¼¢</td><td>13,30¼</td></tr>
+        <tr><td>Milho Dez/26</td><td><strong>US$ 5,33½</strong></td><td class="down">▼ −3¼¢</td><td>5,36¾</td></tr>
+        <tr><td>Milho Mar/27</td><td>US$ 5,49</td><td class="down">▼ −3¼¢</td><td>5,52¼</td></tr>
+        <tr><td>Farelo Out/26</td><td>US$ 343,30</td><td class="down">▼ −4,90</td><td>348,20</td></tr>
+        <tr><td>Óleo de soja Out/26</td><td><strong>70,22 ¢/lb</strong></td><td class="up">▲ +133 pts</td><td>68,89</td></tr>
+        <tr><td>Trigo Chicago Dez/26</td><td><strong>US$ 7,47</strong></td><td class="up">▲ +13¢</td><td>7,34</td></tr>
+        <tr><td>Trigo KC Dez/26</td><td>US$ 8,19</td><td class="up">▲ +16¾¢</td><td>8,02¼</td></tr>
+        <tr><td>Trigo Spring Dez/26</td><td>US$ 7,54</td><td class="up">▲ +9¢</td><td>—</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🐄 Pecuária — CME, fechamento de sexta 04/09 ✓</h2>
-    <div class="sub">Dia de correção nos três contratos, também com ajuste pré-feriado. Sem pregão na segunda.</div>
+    <h2>🐄 Pecuária — CME, fechamento de terça 08/09 ✓</h2>
+    <div class="sub"><strong>Salto forte nos três contratos</strong>, recuperando com folga a correção de sexta. A retomada dos embarques de gado mexicano por Douglas (AZ) e as tarifas de retaliação do Canadá, em vigor desde ontem, seguem sustentando o feeder.</div>
     <table>
-      <thead><tr><th>Contrato</th><th>Fech. 04/09 ✓</th><th>Var. dia</th></tr></thead>
+      <thead><tr><th>Contrato</th><th>Fech. 08/09 ✓</th><th>Var. dia</th><th>Fech. 04/09</th></tr></thead>
       <tbody>
-        <tr><td>Live cattle Out/26</td><td><strong>US$ 212,95</strong></td><td class="down">▼ −1,35</td></tr>
-        <tr><td>Feeder cattle Out/26</td><td>US$ 320,15</td><td class="down">▼ −0,95</td></tr>
-        <tr><td>Lean hogs Out/26</td><td>US$ 82,30</td><td class="down">▼ −1,15</td></tr>
+        <tr><td>Live cattle Out/26</td><td><strong>US$ 217,02</strong></td><td class="up">▲ +4,07</td><td>212,95</td></tr>
+        <tr><td>Feeder cattle Out/26</td><td><strong>US$ 325,45</strong></td><td class="up">▲ +5,30</td><td>320,15</td></tr>
+        <tr><td>Lean hogs Out/26</td><td>US$ 84,25</td><td class="up">▲ +1,95</td><td>82,30</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🐂 Boi gordo — futuros B3 (BGI) e físico, 04/09 ✓</h2>
-    <div class="sub">Curva em alta na sexta em todos os vencimentos, com <strong>ágio expressivo do Out/26 (373,95) sobre o indicador (347,70): R$ 26,25/@</strong>. No físico, a Scot trouxe todas as praças <strong>estáveis</strong> a 30 dias. <span class="pend">Escalas de abate da semana: não confirmadas — o Portal DBO/Agrifatto devolveu matéria reciclada de 19/08, descartada.</span></div>
+    <h2>🐂 Boi gordo — futuros B3 (BGI), ajuste de 08/09 ✓</h2>
+    <div class="sub">Curva subiu em todos os vencimentos, mais que o indicador. <strong>O ágio do Out/26 sobre o indicador abriu de R$ 26,25 (04/09) para R$ 29,15</strong>. Físico com escalas curtas e oferta restrita, SP perto ou acima de R$ 345/@ — viés altista. <span class="pend">Tabela completa de praças da Scot não refeita nesta edição; a última confirmada é a de 04/09 (Barretos/Dourados/Paragominas 345, Campo Grande 343, Triângulo 337, Goiânia e Marabá 335, Cuiabá 330, MT Norte e RO Sudeste 328).</span></div>
     <table>
-      <thead><tr><th>Vencimento BGI</th><th>Ajuste 04/09 ✓</th><th>Var. dia</th><th>Ágio vs indicador</th></tr></thead>
+      <thead><tr><th>Vencimento</th><th>Ajuste 08/09 ✓</th><th>Var. dia</th><th>Ágio vs indicador (348,35)</th></tr></thead>
       <tbody>
-        <tr><td>Set/26</td><td><strong>358,90</strong></td><td class="up">▲ +0,25%</td><td>+11,20</td></tr>
-        <tr><td>Out/26</td><td><strong>373,95</strong></td><td class="up">▲ +0,59%</td><td><strong>+26,25</strong></td></tr>
-        <tr><td>Nov/26</td><td>378,35</td><td class="up">▲ +0,77%</td><td>+30,65</td></tr>
-        <tr><td>Dez/26</td><td>379,00</td><td class="up">▲ +0,66%</td><td>+31,30</td></tr>
-        <tr><td>Jan/27</td><td>380,80</td><td class="up">▲ +0,41%</td><td>+33,10</td></tr>
-      </tbody>
-    </table>
-    <table>
-      <thead><tr><th>Praça (Scot, 04/09, 30 dias)</th><th>R$/@</th><th>Praça</th><th>R$/@</th></tr></thead>
-      <tbody>
-        <tr><td>SP — Barretos</td><td>345,00</td><td>MG — Triângulo</td><td>337,00</td></tr>
-        <tr><td>MS — Dourados</td><td>345,00</td><td>GO — Goiânia</td><td>335,00</td></tr>
-        <tr><td>PA — Paragominas</td><td>345,00</td><td>PA — Marabá</td><td>335,00</td></tr>
-        <tr><td>MS — Campo Grande</td><td>343,00</td><td>MT — Cuiabá</td><td>330,00</td></tr>
-        <tr><td>MT — Norte</td><td>328,00</td><td>RO — Sudeste</td><td>328,00</td></tr>
+        <tr><td>Set/26</td><td><strong>362,30</strong></td><td class="up">▲ +0,95%</td><td>+13,95</td></tr>
+        <tr><td>Out/26</td><td><strong>377,50</strong></td><td class="up">▲ +0,83%</td><td><strong>+29,15</strong></td></tr>
+        <tr><td>Nov/26</td><td>382,40</td><td class="up">▲ +1,07%</td><td>+34,05</td></tr>
+        <tr><td>Dez/26</td><td>382,50</td><td class="up">▲ +0,92%</td><td>+34,15</td></tr>
+        <tr><td>Jan/27</td><td>383,65</td><td class="up">▲ +0,75%</td><td>+35,30</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🥩 Exportação de carne bovina — agosto/26</h2>
-    <div class="sub">O dado mais relevante do mês para o BGI: <strong>a cota chinesa de 1,106 mi t já estava 90% consumida em 10/08, e acima dela incide tarifa adicional de 55%</strong> — o embarque parou.</div>
+    <h2>🌽 Milho — futuros B3 (CCM), ajuste de 08/09 ✓</h2>
+    <div class="sub">Curva cedeu cerca de 1% acompanhando Chicago, enquanto o indicador físico ficou de lado. <span class="pend">Nov/26 não foi exibido na fonte — n/d.</span></div>
     <table>
-      <thead><tr><th>Recorte</th><th>Volume</th><th>Receita</th></tr></thead>
+      <thead><tr><th>Vencimento</th><th>Ajuste 08/09 ✓</th><th>Var. dia</th></tr></thead>
       <tbody>
-        <tr><td>Agosto/26 vs ago/25</td><td class="down">▼ −27,1%</td><td class="down">US$ 1,2 bi (▼ −19,7%)</td></tr>
-        <tr><td>Jan–ago/26 acumulado</td><td class="up">▲ +4,7%</td><td class="up">▲ +22,3%</td></tr>
+        <tr><td>Set/26</td><td><strong>71,19</strong></td><td class="down">▼ −0,74%</td></tr>
+        <tr><td>Nov/26</td><td class="pend">n/d</td><td class="pend">fonte não exibiu</td></tr>
+        <tr><td>Jan/27</td><td><strong>80,29</strong></td><td class="down">▼ −1,00%</td></tr>
+        <tr><td>Mar/27</td><td><strong>82,30</strong></td><td class="down">▼ −1,02%</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>☕ Café — CEPEA e bolsas, 04/09 ✓</h2>
-    <div class="sub"><strong>Quatro quedas seguidas e −5,06% na semana no arábica CEPEA.</strong> Em NY o Dez/26 rompeu os 300 ¢/lb, <strong>mínima de três meses</strong>. Motores da queda: armazéns cheios no Brasil forçando o produtor represado a vender, exportações do Vietnã <strong>+13,7% em jan–ago (1,33 mi t)</strong>, aversão a risco macro e chuvas melhorando a lavoura 27/28. Contrapeso que segura o piso: <strong>estoques certificados na ICE perto da mínima em 26 anos</strong> (referência de 27/08).</div>
+    <h2>☕ Café — CEPEA e bolsas, 08/09 ✓</h2>
+    <div class="sub"><strong>Quinta queda seguida no arábica CEPEA: −1,47%, a R$ 1.635,57 — acumula −6,5% desde 31/08.</strong> Em NY o Dez/26 seguiu abaixo dos 300 ¢/lb, a 291,30. Chama atenção a <strong>divergência: o robusta subiu tanto em Londres (+1,57%) quanto no CEPEA conilon (+0,42%)</strong>, enquanto o arábica apanhou — pressão de oferta brasileira concentrada no arábica.</div>
     <table>
-      <thead><tr><th>Contrato</th><th>Fech. 04/09 ✓</th><th>Var. dia</th></tr></thead>
+      <thead><tr><th>Contrato</th><th>Fech. 08/09 ✓</th><th>Var. dia</th><th>Fech. 04/09</th></tr></thead>
       <tbody>
-        <tr><td>Arábica NY Set/26</td><td><strong>324,25 ¢/lb</strong></td><td class="down">▼ −0,10 pt</td></tr>
-        <tr><td>Arábica NY Dez/26</td><td><strong>295,60 ¢/lb</strong></td><td class="up">▲ +0,25 pt · <span class="down">abaixo de 300 = mínima de 3 meses</span></td></tr>
-        <tr><td>Arábica NY Mar/27</td><td>287,40 ¢/lb</td><td class="up">▲ +2,35 pts</td></tr>
-        <tr><td>Robusta Londres Set/26</td><td><strong>~US$ 3.400/t</strong></td><td class="up">▲ +1,67%</td></tr>
-        <tr><td>CEPEA arábica</td><td><strong>R$ 1.659,93</strong></td><td class="down">▼ −0,74% · −5,06% semana</td></tr>
-        <tr><td>CEPEA conilon</td><td><strong>R$ 976,71</strong></td><td class="down">▼ −0,34% · −4,44% vs 31/08</td></tr>
+        <tr><td>Arábica NY Set/26</td><td><strong>318,45 ¢/lb</strong></td><td class="down">▼ −5,80 pts</td><td>324,25</td></tr>
+        <tr><td>Arábica NY Dez/26</td><td><strong>291,30 ¢/lb</strong></td><td class="down">▼ −4,30 pts</td><td>295,60</td></tr>
+        <tr><td>Arábica NY Mar/27</td><td>282,65 ¢/lb</td><td class="down">▼ −4,75 pts</td><td>287,40</td></tr>
+        <tr><td>Robusta Londres Set/26</td><td><strong>US$ 3.428/t</strong></td><td class="up">▲ +1,57%</td><td>~3.400</td></tr>
+        <tr><td>ICF B3 Dez/26</td><td><strong>R$ 1.787,66/sc</strong></td><td class="down">▼ −2,98%</td><td>—</td></tr>
+        <tr><td>CEPEA arábica</td><td><strong>R$ 1.635,57</strong></td><td class="down">▼ −1,47%</td><td>1.659,93</td></tr>
+        <tr><td>CEPEA conilon</td><td><strong>R$ 980,78</strong></td><td class="up">▲ +0,42%</td><td>976,71</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>💵 Câmbio, macro e agenda</h2>
-    <div class="sub">Sexta 04/09 fechada ✓. A semana é de inflação dos dois lados e termina com o WASDE no mesmo dia do IPCA e do CPI. <span class="pend">Variação semanal do Ibovespa e do dólar não confirmada — só o fechamento diário de 04/09.</span></div>
+    <h2>💵 Câmbio e macro — terça 08/09 ✓</h2>
+    <div class="sub">Dia forte para o ativo brasileiro: <strong>Ibovespa na máxima em quatro meses e dólar na mínima do mês</strong>. Para o exportador, câmbio abaixo de R$ 5,10 tira um pouco da gordura da paridade.</div>
     <table>
       <thead><tr><th>Item</th><th>Referência</th><th>Obs.</th></tr></thead>
       <tbody>
-        <tr><td>Ibovespa 04/09 (fech.)</td><td><strong>185.147,15 pts (▼ −0,02%) ✓</strong></td><td><strong>+14,91% no ano</strong></td></tr>
-        <tr><td>Dólar comercial 04/09 (fech.)</td><td><strong>R$ 5,1308 (▲ +0,52%) ✓</strong></td><td>paridade de exportação favorável</td></tr>
-        <tr><td>Brent 08/09</td><td><strong>US$ 99,05 (▲ +2,22%) ✓</strong></td><td><strong>máxima de 6 semanas</strong>; +~10% na semana passada; Irã/Ormuz. Suporte a etanol/milho, custo de frete e insumos</td></tr>
-        <tr><td>Hoje, ter 08/09</td><td>IGP-DI + Boletim Focus</td><td>—</td></tr>
-        <tr><td>Qui 10/09</td><td>PMS · <strong>PPI dos EUA</strong> · <strong>decisão do BCE</strong></td><td>—</td></tr>
-        <tr><td>Sex 11/09</td><td><strong>IPCA de agosto + CPI dos EUA + WASDE</strong></td><td>o dia da semana</td></tr>
-        <tr><td>15–16/09</td><td>FOMC</td><td>Copom na semana seguinte</td></tr>
+        <tr><td>Ibovespa 08/09 (fech.)</td><td><strong>187.454,34 pts (▲ +1,25%) ✓</strong></td><td><strong>máxima em 4 meses</strong>; giro R$ 18,76 bi</td></tr>
+        <tr><td>Dólar comercial 08/09 (fech.)</td><td><strong>R$ 5,086 (▼ −0,86%) ✓</strong></td><td><strong>mínima do mês</strong>; pesou sobre a soja em reais</td></tr>
+        <tr><td>PTAX 08/09</td><td class="pend">n/d</td><td>não localizada em fonte gratuita</td></tr>
+        <tr><td>Petróleo Out/26 na CME, 08/09</td><td>US$ 93,03 (▲ +1,55)</td><td><span class="pend">TFM registrou 93,69 (+2,17) — divergência de horário de captura</span></td></tr>
+        <tr><td>Brent agora (09/09)</td><td><strong>~US$ 100,6 (▲ +2,6% a +2,9%) ✓</strong></td><td><strong>rompeu US$ 100, máxima desde maio/26</strong></td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <h2>🌦️ Clima — EUA e Brasil</h2>
-    <div class="sub">Duas histórias opostas: nos EUA, calor extremo na reta final; no Brasil, a chuva chegou e o plantio começou.</div>
+    <h2>⚠️ Riscos em aberto — sem data marcada</h2>
     <table>
-      <thead><tr><th>Região</th><th>Quadro</th><th>Leitura de mercado</th></tr></thead>
+      <thead><tr><th>Tema</th><th>Situação</th><th>Efeito no book</th></tr></thead>
       <tbody>
-        <tr><td>EUA — Planícies e Corn Belt (04/09)</td><td>Calor extremo, <strong>acima de 100°F</strong> nas Planícies Central e Sul e perto disso no centro de Illinois; sem chuva relevante no Meio-Mississippi. Sem risco de geada.</td><td>Acelera a maturação (bom para colheita), mas <strong>estressa o que ainda enche grão — a soja em enchimento de vagem é a mais sensível</strong>, na véspera do WASDE</td></tr>
-        <tr><td>Brasil — plantio soja 26/27 (AgRural, 07/09)</td><td><strong>0,05% da área</strong> plantada (0,02% no ano passado), começou no <strong>Paraná</strong> com as chuvas da semana passada; <strong>vazio sanitário de MT terminou em 07/09</strong></td><td>Calendário no prazo; MT inicia em áreas de algodão</td></tr>
-        <tr><td>Brasil — milho verão centro-sul</td><td><strong>17% plantado</strong> (11% na semana anterior; 12% no ano passado), puxado pelo RS</td><td>Adiantado em relação ao ano passado</td></tr>
-        <tr><td>Café — geada/florada</td><td><span class="pend">Nenhum evento de geada em área cafeeira confirmado em setembro/26</span></td><td>Material sobre florada antecipada circulando é de 29/07 — reciclado, não usar</td></tr>
+        <tr><td>China — carne bovina</td><td>Cota de 1,106 mi t praticamente esgotada + <strong>tarifa adicional de 55%</strong> acima dela. Exportação de agosto veio <strong>−27,1% em volume</strong> (receita US$ 1,2 bi, −19,7%)</td><td>Teto estrutural para o BGI exportação; qualquer sinal de recalibragem da cota move a arroba</td></tr>
+        <tr><td>Canadá — retaliação</td><td>Tarifas em vigor desde 08/09</td><td>Redesenha fluxo de proteína na América do Norte</td></tr>
+        <tr><td>Gado mexicano</td><td>Embarques retomados por Douglas (AZ)</td><td>Sustenta o feeder cattle em NY</td></tr>
+        <tr><td>Ormuz / Irã / Arábia</td><td>Escalada em curso — houthis, petroleiros, retaliação na Jordânia</td><td><strong>Driver nº 1 do dia.</strong> Diesel, frete e fertilizante para cima; suporte a óleo de soja e etanol</td></tr>
       </tbody>
     </table>
   </section>
 
   <footer>
-    Fontes CEPEA (séries datadas, linha a linha): <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo/boi-gordo-indicador-esalq-bmf">boi gordo</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/milho/indicador-cepea-esalq-milho">milho</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/soja/soja-indicador-cepea-esalq-porto-paranagua">soja Paranaguá</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-arabica">café arábica</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-conillon">café conilon</a>. Demais: <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-september-4-2026/">Brownfield — CBOT/CME 04/09</a> · <a href="https://www.totalfarmmarketing.com/news/tfm-daily-market-summary-9-4-2026/">TFM 04/09</a> · <a href="https://www.brownfieldagnews.com/news/allendale-survey-shows-lower-2026-corn-soybean-yields/">Brownfield — Allendale</a> · <a href="https://www.agrolatam.com/usa/news/september-wasde-corn-yield-grain-prices-usda-2026/">Agrolatam — prévia do WASDE</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo">NA — BGI B3 04/09</a> · <a href="https://www.scotconsultoria.com.br/cotacoes/boi-gordo/">Scot — físico 04/09</a> · <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-09/cota-chinesa-faz-exportacao-de-carne-bovina-recuar-271-em-agosto">Agência Brasil — exportação de carne</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/cafe-bolsa-de-nova-iorque-nybot">NA — café NY 04/09</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café</a> · <a href="https://www.dgabc.com.br/Noticia/4345236/fechamento-do-mercado-financeiro">Fechamento Ibov/dólar 04/09</a> · <a href="https://tradingeconomics.com/commodity/brent-crude-oil">Brent 08/09</a> · <a href="https://www.agrolatam.com/usa/weather/us-farm-weather-plains-heat-crops-livestock-september-2026/">Clima EUA</a> · <a href="https://br.investing.com/news/commodities-news/produtores-do-parana-iniciam-plantio-da-safra-de-soja-20262027-no-brasil-diz-agrural-2058383">AgRural — plantio 26/27</a>
-    <p style="margin-top:10px">Regra do painel: só números confirmados por fonte com data no corpo; "n/d" ou marcação laranja quando não confirmado. <strong>Não confirmados nesta edição:</strong> soja e milho em Chicago na madrugada de hoje; escalas de abate da semana; variação semanal de Ibovespa e dólar; estoques certificados ICE com data de setembro; revisões da StoneX para o WASDE. Próximo corte: <strong>16h40</strong>; os indicadores CEPEA de hoje entram no corte das <strong>19h</strong>. Material informativo para a mesa de operações — não constitui recomendação de investimento.</p>
+    Fontes CEPEA (séries datadas): <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo/boi-gordo-indicador-esalq-bmf">boi gordo</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/milho/indicador-cepea-esalq-milho">milho</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/soja/soja-indicador-cepea-esalq-porto-paranagua">soja Paranaguá</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/indicador-cepea-esalq-cafe-arabica">café arábica</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/">painel de cotações NA (conilon)</a>. Demais: <a href="https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-september-8-2026/">Brownfield — CBOT/CME 08/09</a> · <a href="https://www.totalfarmmarketing.com/tfm-daily-market-summary-09-08-2026/">TFM 08/09</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/boi-gordo">NA — BGI B3</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/milho">NA — CCM B3</a> · <a href="https://cotacaodocafe.com/cafe-na-bolsa/">Cotação do Café</a> · <a href="https://www.noticiasagricolas.com.br/cotacoes/cafe/cafe-bolsa-de-nova-iorque-nybot">NA — café NY</a> · <a href="https://www.poder360.com.br/poder-economia/dolar-cai-a-r-5086-e-ibovespa-sobe-a-187-454-pontos/">Poder360 — Ibov/dólar 08/09</a> · <a href="https://tradingeconomics.com/commodity/brent-crude-oil">Brent</a> · <a href="https://www.cnbc.com/2026/09/08/oil-prices-today-brent-wti-hormuz-iran-war.html">CNBC — Ormuz/Irã</a> · <a href="https://br.advfn.com/jornal/2026/09/farol-economico-agenda-dos-indicadores-que-movimentam-as-bolsas-nesta-quarta-feira-09-09-2026">ADVFN — agenda de hoje</a> · <a href="https://www.eia.gov/petroleum/supply/weekly/">EIA — calendário semanal</a> · <a href="https://www.ibge.gov.br/calendario/conjunturais.html">IBGE — calendário</a> · <a href="https://www.canalrural.com.br/agricultura/conab-calendario-2026-safras-hortifrutigranjeiro/">Canal Rural — calendário CONAB</a> · <a href="https://folhaagricola.com.br/2026/09/09/boi-gordo-ganha-forca-e-contratos-acima-de-r-380-elevam-expectativa-de-alta/">Folha Agrícola — boi 09/09</a>
+    <p style="margin-top:10px">Regra do painel: só números confirmados por fonte com data no corpo; "n/d" ou marcação laranja quando não confirmado. <strong>Não confirmados nesta edição:</strong> CCM B3 Nov/26; PTAX de 08/09; horário do CONAB de 15/09; praças da Scot de 08/09; divergência do crude entre Brownfield (93,03) e TFM (93,69). <strong>Incidente:</strong> os cortes automáticos de 08/09 (16h40 e 19h) não publicaram — esta edição manual recompõe o dia. Material informativo para a mesa de operações — não constitui recomendação de investimento.</p>
   </footer>
 </div>
 </body>
